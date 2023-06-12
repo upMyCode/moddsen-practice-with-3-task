@@ -5,13 +5,13 @@ import PATHS from './constants/paths/paths'
 
 function App() {
   return (
-    <div className='App'>
+    <>
       <Router>
         <Routes>
           <Route path={PATHS.HOME} element={<HomePage />} />
         </Routes>
       </Router>
-    </div>
+    </>
   )
 }
 

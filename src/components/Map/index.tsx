@@ -11,7 +11,7 @@ import setUserPositionAction from '../../store/action/setUserPositionAction'
 import ChangeView from '../ChangeView'
 
 const Map = () => {
-  const height: string = '701px'
+  const height: string = '100vh'
   const customIcon = new Icon({
     iconUrl: marker,
     iconSize: [38, 38],

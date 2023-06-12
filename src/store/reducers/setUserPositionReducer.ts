@@ -7,7 +7,7 @@ type TCoords = {
 }
 const initialState: TCoords = {
   coords: [53.9018, 27.55919],
-  zoom: 1,
+  zoom: 9,
 }
 
 type Action = ReturnType<typeof setUserPositionAction>

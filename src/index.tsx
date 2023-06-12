@@ -6,9 +6,14 @@ import { Provider } from 'react-redux'
 import store from './store'
 
 const GlobalStyle = createGlobalStyle`
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  #root {
+    height: 100vh;
+  }
 `
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
