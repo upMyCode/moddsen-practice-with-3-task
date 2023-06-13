@@ -1,5 +1,5 @@
-import React from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 
 export interface IPropsModal {
-  children: React.ReactNode
+  children?: ReactElement | ReactNode[]
 }

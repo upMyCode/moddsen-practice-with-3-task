@@ -6,6 +6,7 @@ type TNavbarItem = {
   radius?: string
   bgcolor?: string
   border?: string
+  onClick?: React.MouseEventHandler<HTMLLIElement> | undefined
 }
 
 export default TNavbarItem
