@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from 'redux'
 import setUserPositionReducer from './reducers/setUserPositionReducer'
+import setModalStatusReducer from './reducers/setModalStatusReducer'
 
 const reducers = combineReducers({
   setUserPositionReducer,
+  setModalStatusReducer,
 })
 
 const store = createStore(reducers)
