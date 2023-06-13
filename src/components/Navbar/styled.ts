@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import TNavbarItem from './TNavbarItem'
+import TNavbarItemImg from './TNavbarItemImg'
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -15,15 +17,7 @@ const NavbarList = styled.ul`
   align-items: center;
 `
 
-const NavbarItem = styled.li<{
-  top?: string
-  bot?: string
-  width: string
-  height: string
-  radius?: string
-  bgcolor?: string
-  border?: string
-}>`
+const NavbarItem = styled.li<TNavbarItem>`
   list-style: none;
   cursor: pointer;
   display: flex;
@@ -38,7 +32,7 @@ const NavbarItem = styled.li<{
   border: ${(props) => (props.border ? props.border : '')};
 `
 
-const NavbarItemImg = styled.img<{ width?: string; height?: string }>`
+const NavbarItemImg = styled.img<TNavbarItemImg>`
   width: ${(props) => (props.width ? props.height : '')};
   height: ${(props) => (props.width ? props.height : '')};
 `

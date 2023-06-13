@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
-import { LatLngTuple } from 'leaflet'
-import { TileLayer, Marker, Popup, useMap } from 'react-leaflet'
-import { Icon, divIcon } from 'leaflet'
+import { TileLayer, Marker, Popup} from 'react-leaflet'
+import { Icon} from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { MyMap } from './styled'
 import marker from '../../assets/img/marker.png'
@@ -37,7 +36,7 @@ const Map = () => {
         }
       })
     }
-  }, [])
+  }, [dispatch])
 
   return (
     <MyMap height={height} center={location.coords} zoom={location.zoom}>

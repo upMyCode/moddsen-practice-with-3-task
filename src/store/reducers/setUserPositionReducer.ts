@@ -1,18 +1,15 @@
-import { LatLngTuple } from 'leaflet'
-import setUserPositionAction from '../action/setUserPositionAction'
+import TCoords from './TCoords'
+import TActionSetUserPosition from './TActionSetUserPosition'
 
-type TCoords = {
-  coords: LatLngTuple
-  zoom: number
-}
 const initialState: TCoords = {
   coords: [53.9018, 27.55919],
   zoom: 9,
 }
 
-type Action = ReturnType<typeof setUserPositionAction>
-
-const setUserPositionReducer = (state = initialState, action: Action) => {
+const setUserPositionReducer = (
+  state = initialState,
+  action: TActionSetUserPosition
+) => {
   switch (action.type) {
     case 'SET_USER_POSITION':
       return {

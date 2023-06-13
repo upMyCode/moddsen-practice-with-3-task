@@ -1,9 +1,4 @@
-import { LatLngTuple } from 'leaflet'
-
-interface ILocationData {
-  coords: LatLngTuple
-  zoom: number
-}
+import ILocationData from './ILocationData'
 
 const setUserPositionAction = (location: ILocationData) => ({
   payload: location,
