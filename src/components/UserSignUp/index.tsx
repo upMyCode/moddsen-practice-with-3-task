@@ -1,4 +1,3 @@
-import React, { FC, useState } from 'react'
 import { Formik, FormikHelpers } from 'formik'
 import ClearIcon from '@mui/icons-material/Clear'
 import { validationSchema } from './validationSchema'

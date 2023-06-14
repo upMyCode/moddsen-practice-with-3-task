@@ -1,14 +1,11 @@
-import { useSelector } from 'react-redux'
 import { useMap } from 'react-leaflet'
-import { RootState } from '../../store'
+import { usePosition } from '../hooks/usePosition'
 
 const ChangeView = () => {
-  const location = useSelector(
-    (state: RootState) => state.setUserPositionReducer
-  )
+  const { coords, zoom } = usePosition()
   const map = useMap()
 
-  map.setView(location.coords, location.zoom)
+  map.setView(coords, zoom)
 
   return null
 }
