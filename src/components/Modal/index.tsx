@@ -15,8 +15,6 @@ const Modal: FC<IPropsModal> = ({ children }) => {
     dispatch(setModalStatusAction(!status))
   }
 
-  console.log(children)
-
   return (
     <>
       {status && (

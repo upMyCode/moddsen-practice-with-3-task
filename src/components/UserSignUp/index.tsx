@@ -1,6 +1,9 @@
 import { Formik, FormikHelpers } from 'formik'
 import ClearIcon from '@mui/icons-material/Clear'
 import { validationSchema } from './validationSchema'
+import { useDispatch } from 'react-redux'
+import setModalStatusAction from '../../store/action/setModalStatusAction'
+import CustomForm from '../../components/CustomForm'
 import IUserSignUp from './IUserSignUp'
 import {
   UserSignUpWrapper,
@@ -11,16 +14,22 @@ import {
   UserSignUpFormListItem,
   UserSignUpFormListInput,
   UserSignUpFormButton,
+  UserSignUpHeaderButton,
+  UserSignUpFooter,
+  UserSignUpFooterButton,
+  UserSignUpFooterText,
 } from './styled'
 
 const UserSignUp = () => {
+  const dispatch = useDispatch()
+
   const redirectToLogIn = () => {
     console.log('login')
     console.log('redirect')
   }
 
   const closeModal = () => {
-    console.log('close')
+    dispatch(setModalStatusAction(false))
   }
 
   const onSubmitDataSignUp = async (
@@ -56,48 +65,75 @@ const UserSignUp = () => {
         <UserSignUpWrapper onClick={(e) => e.stopPropagation()}>
           <UserSignUpInfo>
             <UserSignUpHeader>Sign up</UserSignUpHeader>
-            <button type='button' onClick={closeModal}>
-              <ClearIcon />
-            </button>
+            <UserSignUpHeaderButton type='button' onClick={closeModal}>
+              <ClearIcon
+                sx={{ color: '#6B7280', '&:hover': { color: '#000000' } }}
+              />
+            </UserSignUpHeaderButton>
           </UserSignUpInfo>
           <UserSignUpForm onSubmit={handleSubmit}>
             <UserSignUpFormList>
               <UserSignUpFormListItem>
-                <UserSignUpFormListInput
-                  value={values.email}
-                  name='email'
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  placeholder='name@example.com'
+                <CustomForm
+                  formValue={values.email}
+                  formName='email'
+                  formOnBlur={handleBlur}
+                  formOnChange={handleChange}
+                  formPlaceholder='name@example.com'
+                  formType="email"
+                  error={errors.email}
+                  touched={touched.email}
+                  isValid={isValid}
+                  dirty={dirty}
                 />
               </UserSignUpFormListItem>
               <UserSignUpFormListItem>
-                <UserSignUpFormListInput
-                  value={values.password}
-                  name='password'
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  placeholder='Enter Password'
+                <CustomForm
+                  formValue={values.password}
+                  formName='password'
+                  formOnBlur={handleBlur}
+                  formOnChange={handleChange}
+                  formPlaceholder='Enter Password'
+                  formType="password"
+                  error={errors.password}
+                  touched={touched.password}
+                  isValid={isValid}
+                  dirty={dirty}
                 />
               </UserSignUpFormListItem>
               <UserSignUpFormListItem>
-                <UserSignUpFormListInput
-                  value={values.confirm_password}
-                  name='confirm_password'
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  placeholder='Repeat Password'
+                <CustomForm
+                  formValue={values.confirm_password}
+                  formName='confirm_password'
+                  formOnBlur={handleBlur}
+                  formOnChange={handleChange}
+                  formType="password"
+                  formPlaceholder='Repeat Password'
+                  error={errors.confirm_password}
+                  touched={touched.confirm_password}
+                  isValid={isValid}
+                  dirty={dirty}
                 />
               </UserSignUpFormListItem>
               <UserSignUpFormListItem>
-                <UserSignUpFormButton>Create account</UserSignUpFormButton>
+                <UserSignUpFormButton
+                  disabled={!(isValid && dirty)}
+                  isallformfilled={(isValid && dirty).toString()}
+                >
+                  Create account
+                </UserSignUpFormButton>
               </UserSignUpFormListItem>
             </UserSignUpFormList>
           </UserSignUpForm>
-          <div>
-            <span>Already have an account?</span>
-            <button onClick={redirectToLogIn}> Log in! </button>
-          </div>
+          <UserSignUpFooter>
+            <UserSignUpFooterText>
+              Already have an account?
+            </UserSignUpFooterText>
+            <UserSignUpFooterButton onClick={redirectToLogIn}>
+              {' '}
+              Log in!{' '}
+            </UserSignUpFooterButton>
+          </UserSignUpFooter>
         </UserSignUpWrapper>
       )}
     </Formik>
