@@ -24,12 +24,12 @@ const UserSignUp = () => {
   const dispatch = useDispatch()
 
   const redirectToLogIn = () => {
-    console.log('login')
-    console.log('redirect')
+    dispatch(setModalStatusAction({ status: false, modalName: 'sign-up' }))
+    dispatch(setModalStatusAction({ status: true, modalName: 'log-in' }))
   }
 
   const closeModal = () => {
-    dispatch(setModalStatusAction(false))
+    dispatch(setModalStatusAction({ status: false, modalName: 'sign-up' }))
   }
 
   const onSubmitDataSignUp = async (
@@ -80,7 +80,7 @@ const UserSignUp = () => {
                   formOnBlur={handleBlur}
                   formOnChange={handleChange}
                   formPlaceholder='name@example.com'
-                  formType="email"
+                  formType='email'
                   error={errors.email}
                   touched={touched.email}
                   isValid={isValid}
@@ -94,7 +94,7 @@ const UserSignUp = () => {
                   formOnBlur={handleBlur}
                   formOnChange={handleChange}
                   formPlaceholder='Enter Password'
-                  formType="password"
+                  formType='password'
                   error={errors.password}
                   touched={touched.password}
                   isValid={isValid}
@@ -107,7 +107,7 @@ const UserSignUp = () => {
                   formName='confirm_password'
                   formOnBlur={handleBlur}
                   formOnChange={handleChange}
-                  formType="password"
+                  formType='password'
                   formPlaceholder='Repeat Password'
                   error={errors.confirm_password}
                   touched={touched.confirm_password}

@@ -45,7 +45,11 @@ const Navbar = () => {
           bot='38px'
           width='48px'
           height='48px'
-          onClick={() => dispatch(setModalStatusAction(true))}
+          onClick={() =>
+            dispatch(
+              setModalStatusAction({ status: true, modalName: 'sign-up' })
+            )
+          }
         >
           <NavbarItemImg
             width='48px'

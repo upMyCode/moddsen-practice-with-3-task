@@ -3,6 +3,7 @@ import TSetModalStatusAction from './TSetModalStatusAction'
 
 const initialState: IStatus = {
   status: false,
+  modalName: '',
 }
 
 const setModalStatusReducer = (
@@ -12,7 +13,7 @@ const setModalStatusReducer = (
   switch (action.type) {
     case 'SET_MODAL_STATUS':
       return {
-        status: action.payload,
+        ...action.payload,
       }
     default:
       return state

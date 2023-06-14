@@ -12,7 +12,7 @@ const Modal: FC<IPropsModal> = ({ children }) => {
   )
 
   const closeModalDarkPlace = () => {
-    dispatch(setModalStatusAction(!status))
+    dispatch(setModalStatusAction({ status: !status }))
   }
 
   return (

@@ -1,5 +1,6 @@
 interface IStatus {
-    status: boolean
+  status: boolean
+  modalName?: string
 }
 
 export default IStatus
