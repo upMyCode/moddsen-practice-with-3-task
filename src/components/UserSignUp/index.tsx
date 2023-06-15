@@ -3,8 +3,11 @@ import ClearIcon from '@mui/icons-material/Clear'
 import { validationSchema } from './validationSchema'
 import { useDispatch } from 'react-redux'
 import setModalStatusAction from '../../store/action/setModalStatusAction'
+import setCurrentUserInfoAction from '../../store/action/setCurrentUserInfoAction'
 import CustomForm from '../../components/CustomForm'
 import IUserSignUp from './IUserSignUp'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../../firebaseApp'
 import {
   UserSignUpWrapper,
   UserSignUpInfo,
@@ -36,7 +39,20 @@ const UserSignUp = () => {
     values: IUserSignUp,
     actions: FormikHelpers<IUserSignUp>
   ) => {
-    console.log(values)
+    try {
+      const registredUser = await createUserWithEmailAndPassword(
+        auth,
+        values.email,
+        values.password
+      )
+
+      if (registredUser) {
+        dispatch(setModalStatusAction({ status: false, modalName: 'sign-up' }))
+        dispatch(setModalStatusAction({ status: true, modalName: 'log-in' }))
+      }
+    } catch (e: any) {
+      console.log(e.code)
+    }
   }
 
   const initialValues: IUserSignUp = {

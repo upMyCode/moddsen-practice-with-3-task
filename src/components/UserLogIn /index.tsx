@@ -5,6 +5,9 @@ import { useDispatch } from 'react-redux'
 import setModalStatusAction from '../../store/action/setModalStatusAction'
 import CustomForm from '../CustomForm'
 import IUserLogin from './IUserLogin'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import setCurrentUserInfoAction from '../../store/action/setCurrentUserInfoAction'
+import { auth } from '../../firebaseApp'
 import {
   UserLoginWrapper,
   UserLoginInfo,
@@ -24,19 +27,30 @@ const UserLogIn = () => {
   const dispatch = useDispatch()
 
   const redirectToLogOut = () => {
-    console.log('logout')
-    console.log('redirect')
+    dispatch(setModalStatusAction({ status: false, modalName: 'log-in' }))
+    dispatch(setModalStatusAction({ status: true, modalName: 'log-out' }))
   }
 
   const closeModal = () => {
     dispatch(setModalStatusAction({ status: false, modalName: 'log-in' }))
   }
 
-  const onSubmitDataSignUp = async (
+  const onSubmitDataLogin = async (
     values: IUserLogin,
     actions: FormikHelpers<IUserLogin>
   ) => {
-    console.log(values)
+    try {
+      const existUserData = await signInWithEmailAndPassword(
+        auth,
+        values.email,
+        values.password
+      )
+
+      if (existUserData) {
+        const { email, uid } = existUserData.user
+        dispatch(setCurrentUserInfoAction({ userEmail: email, uid }))
+      }
+    } catch (e: unknown) {}
   }
 
   const initialValues: IUserLogin = {
@@ -48,7 +62,7 @@ const UserLogIn = () => {
     <Formik
       initialValues={initialValues}
       validateOnBlur
-      onSubmit={onSubmitDataSignUp}
+      onSubmit={onSubmitDataLogin}
       validationSchema={validationSchema}
     >
       {({
