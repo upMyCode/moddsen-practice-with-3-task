@@ -4,6 +4,7 @@ import { HomePageWrapper } from '../styled'
 import { useSelector } from 'react-redux'
 import { TypeRootState } from '../../store'
 import ViewForm from '../../components/ViewForm'
+import Sidebar from '../../components/Sidebar'
 
 const HomePage = () => {
   const redirection = useSelector(
@@ -14,6 +15,7 @@ const HomePage = () => {
     <HomePageWrapper>
       <ViewForm status={redirection.status} modalName={redirection.modalName} />
       <Navbar />
+      <Sidebar />
       <Map />
     </HomePageWrapper>
   )

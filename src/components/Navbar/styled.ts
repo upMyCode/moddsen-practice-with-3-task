@@ -6,7 +6,7 @@ const NavbarContainer = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 110px;
+  min-width: 110px;
   background: #ffffff;
   border-right: 2px solid #c4c4c4;
   height: 100vh;
