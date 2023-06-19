@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode } from 'react'
 
-export interface IPropsModal {
+export interface TypePropsModal {
   children?: ReactElement | ReactNode[]
 }

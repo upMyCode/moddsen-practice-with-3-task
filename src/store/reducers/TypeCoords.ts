@@ -1,8 +1,8 @@
 import { LatLngTuple } from 'leaflet'
 
-type TCoords = {
+type TypeCoords = {
   coords: LatLngTuple
   zoom: number
 }
 
-export default TCoords
+export default TypeCoords

@@ -1,6 +1,6 @@
-import TStatus from './TStatus'
+import TypeStatus from './TypeStatus'
 
-const setModalStatusAction = (status: TStatus) => ({
+const setModalStatusAction = (status: TypeStatus) => ({
   type: 'SET_MODAL_STATUS',
   payload: status,
 })

@@ -1,4 +1,4 @@
-type TNavbarItem = {
+type TypeNavbarItem = {
   top?: string
   bot?: string
   width: string
@@ -9,4 +9,4 @@ type TNavbarItem = {
   onClick?: React.MouseEventHandler<HTMLLIElement> | undefined
 }
 
-export default TNavbarItem
+export default TypeNavbarItem

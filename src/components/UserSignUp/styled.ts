@@ -1,26 +1,26 @@
 import styled from 'styled-components'
 
-const UserSignUpWrapper = styled.div`
+const Wrapper = styled.div`
   width: 100%;
   background-color: white;
   border-radius: 6px;
   max-width: 500px;
   margin-top: 32px;
 `
-const UserSignUpInfo = styled.div`
+const Info = styled.div`
   margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
 `
-const UserSignUpHeader = styled.h1`
+const Header = styled.h1`
   width: 345px;
   font-size: 30px;
   line-height: 36px;
   color: rgb(107 114 128);
 `
 
-const UserSignUpHeaderButton = styled.button`
+const HeaderButton = styled.button`
   display: flex;
   align-content: center;
   background-color: white;
@@ -30,22 +30,22 @@ const UserSignUpHeaderButton = styled.button`
 } 
 `
 
-const UserSignUpForm = styled.form`
+const Form = styled.form`
   display: flex;
   justify-content: center;
   margin-top: 16px;
 `
-const UserSignUpFormList = styled.div`
+const FormList = styled.div`
   display: flex;
   flex-direction: column;
   width: 345px;
 `
-const UserSignUpFormListItem = styled.div`
+const FormListItem = styled.div`
   margin-top: 12px;
   display: flex;
   justify-content: center;
 `
-const UserSignUpFormListInput = styled.input`
+const FormListInput = styled.input`
   width: 100%;
   padding: 10px 8px 10px 12px;
   border-radius: 6px;
@@ -55,7 +55,7 @@ const UserSignUpFormListInput = styled.input`
     color: grey;
   }
 `
-const UserSignUpFormButton = styled.button<{
+const FormButton = styled.button<{
   isallformfilled?: string | undefined
 }>`
   width: 268px;
@@ -74,15 +74,15 @@ const UserSignUpFormButton = styled.button<{
     outline: none;
   }
 `
-const UserSignUpFooter = styled.div`
+const Footer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 `
-const UserSignUpFooterText = styled.p`
+const FooterText = styled.p`
   margin-right: 4px;
 `
-const UserSignUpFooterButton = styled.button`
+const FooterButton = styled.button`
   color: #2563eb;
   border: none;
   background-color: #ffffff;
@@ -94,16 +94,16 @@ const UserSignUpFooterButton = styled.button`
 `
 
 export {
-  UserSignUpWrapper,
-  UserSignUpInfo,
-  UserSignUpHeader,
-  UserSignUpForm,
-  UserSignUpFormList,
-  UserSignUpFormListItem,
-  UserSignUpFormListInput,
-  UserSignUpFormButton,
-  UserSignUpHeaderButton,
-  UserSignUpFooter,
-  UserSignUpFooterText,
-  UserSignUpFooterButton,
+  Wrapper,
+  Info,
+  Header,
+  Form,
+  FormList,
+  FormListItem,
+  FormListInput,
+  FormButton,
+  HeaderButton,
+  Footer,
+  FooterText,
+  FooterButton,
 }

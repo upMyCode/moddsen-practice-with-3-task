@@ -1,8 +1,8 @@
 import { LatLngTuple } from 'leaflet'
 
-interface ILocationData {
+interface TypeLocationData {
   coords: LatLngTuple
   zoom: number
 }
 
-export default ILocationData
+export default TypeLocationData

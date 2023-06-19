@@ -4,23 +4,22 @@ import { validationSchema } from './validationSchema'
 import { useDispatch } from 'react-redux'
 import setModalStatusAction from '../../store/action/setModalStatusAction'
 import CustomForm from '../CustomForm'
-import IUserLogin from './IUserLogin'
+import TypeUserLogin from './TypeUserLogin'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import setCurrentUserInfoAction from '../../store/action/setCurrentUserInfoAction'
 import { auth } from '../../firebaseApp'
 import {
-  UserLoginWrapper,
-  UserLoginInfo,
-  UserLoginHeader,
-  UserLoginForm,
-  UserLoginFormList,
-  UserLoginFormListItem,
-  UserLoginFormListInput,
-  UserLoginFormButton,
-  UserLoginHeaderButton,
-  UserLoginFooter,
-  UserLoginFooterButton,
-  UserLoginFooterText,
+  Wrapper,
+  Info,
+  Header,
+  Form,
+  FormList,
+  FormListItem,
+  FormButton,
+  HeaderButton,
+  Footer,
+  FooterText,
+  FooterButton,
 } from './styled'
 
 const UserLogIn = () => {
@@ -36,8 +35,8 @@ const UserLogIn = () => {
   }
 
   const onSubmitDataLogin = async (
-    values: IUserLogin,
-    actions: FormikHelpers<IUserLogin>
+    values: TypeUserLogin,
+    actions: FormikHelpers<TypeUserLogin>
   ) => {
     try {
       const existUserData = await signInWithEmailAndPassword(
@@ -53,7 +52,7 @@ const UserLogIn = () => {
     } catch (e: unknown) {}
   }
 
-  const initialValues: IUserLogin = {
+  const initialValues: TypeUserLogin = {
     email: '',
     password: '',
   }
@@ -75,18 +74,18 @@ const UserLogIn = () => {
         handleSubmit,
         dirty,
       }) => (
-        <UserLoginWrapper onClick={(e) => e.stopPropagation()}>
-          <UserLoginInfo>
-            <UserLoginHeader>Log in</UserLoginHeader>
-            <UserLoginHeaderButton type='button' onClick={closeModal}>
+        <Wrapper onClick={(e) => e.stopPropagation()}>
+          <Info>
+            <Header>Log in</Header>
+            <HeaderButton type='button' onClick={closeModal}>
               <ClearIcon
                 sx={{ color: '#6B7280', '&:hover': { color: '#000000' } }}
               />
-            </UserLoginHeaderButton>
-          </UserLoginInfo>
-          <UserLoginForm onSubmit={handleSubmit}>
-            <UserLoginFormList>
-              <UserLoginFormListItem>
+            </HeaderButton>
+          </Info>
+          <Form onSubmit={handleSubmit}>
+            <FormList>
+              <FormListItem>
                 <CustomForm
                   formValue={values.email}
                   formName='email'
@@ -99,8 +98,8 @@ const UserLogIn = () => {
                   isValid={isValid}
                   dirty={dirty}
                 />
-              </UserLoginFormListItem>
-              <UserLoginFormListItem>
+              </FormListItem>
+              <FormListItem>
                 <CustomForm
                   formValue={values.password}
                   formName='password'
@@ -113,25 +112,22 @@ const UserLogIn = () => {
                   isValid={isValid}
                   dirty={dirty}
                 />
-              </UserLoginFormListItem>
-              <UserLoginFormListItem>
-                <UserLoginFormButton
+              </FormListItem>
+              <FormListItem>
+                <FormButton
                   disabled={!(isValid && dirty)}
                   isallformfilled={(isValid && dirty).toString()}
                 >
                   Log in
-                </UserLoginFormButton>
-              </UserLoginFormListItem>
-            </UserLoginFormList>
-          </UserLoginForm>
-          <UserLoginFooter>
-            <UserLoginFooterText>Do you want log out?</UserLoginFooterText>
-            <UserLoginFooterButton onClick={redirectToLogOut}>
-              {' '}
-              Log out
-            </UserLoginFooterButton>
-          </UserLoginFooter>
-        </UserLoginWrapper>
+                </FormButton>
+              </FormListItem>
+            </FormList>
+          </Form>
+          <Footer>
+            <FooterText>Do you want log out?</FooterText>
+            <FooterButton onClick={redirectToLogOut}> Log out</FooterButton>
+          </Footer>
+        </Wrapper>
       )}
     </Formik>
   )

@@ -1,5 +1,5 @@
 import { useMap } from 'react-leaflet'
-import { usePosition } from '../hooks/usePosition'
+import { usePosition } from '../../hooks/usePosition'
 
 const ChangeView = () => {
   const { coords, zoom } = usePosition()

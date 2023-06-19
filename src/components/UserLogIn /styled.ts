@@ -1,26 +1,26 @@
 import styled from 'styled-components'
 
-const UserLoginWrapper = styled.div`
+const Wrapper = styled.div`
   width: 100%;
   background-color: white;
   border-radius: 6px;
   max-width: 500px;
   margin-top: 32px;
 `
-const UserLoginInfo = styled.div`
+const Info = styled.div`
   margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
 `
-const UserLoginHeader = styled.h1`
+const Header = styled.h1`
   width: 345px;
   font-size: 30px;
   line-height: 36px;
   color: rgb(107 114 128);
 `
 
-const UserLoginHeaderButton = styled.button`
+const HeaderButton = styled.button`
   display: flex;
   align-content: center;
   background-color: white;
@@ -30,22 +30,22 @@ const UserLoginHeaderButton = styled.button`
 } 
 `
 
-const UserLoginForm = styled.form`
+const Form = styled.form`
   display: flex;
   justify-content: center;
   margin-top: 16px;
 `
-const UserLoginFormList = styled.div`
+const FormList = styled.div`
   display: flex;
   flex-direction: column;
   width: 345px;
 `
-const UserLoginFormListItem = styled.div`
+const FormListItem = styled.div`
   margin-top: 12px;
   display: flex;
   justify-content: center;
 `
-const UserLoginFormListInput = styled.input`
+const FormListInput = styled.input`
   width: 100%;
   padding: 10px 8px 10px 12px;
   border-radius: 6px;
@@ -55,7 +55,7 @@ const UserLoginFormListInput = styled.input`
     color: grey;
   }
 `
-const UserLoginFormButton = styled.button<{
+const FormButton = styled.button<{
   isallformfilled?: string | undefined
 }>`
   width: 268px;
@@ -74,15 +74,15 @@ const UserLoginFormButton = styled.button<{
     outline: none;
   }
 `
-const UserLoginFooter = styled.div`
+const Footer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 `
-const UserLoginFooterText = styled.p`
+const FooterText = styled.p`
   margin-right: 4px;
 `
-const UserLoginFooterButton = styled.button`
+const FooterButton = styled.button`
   color: #2563eb;
   border: none;
   background-color: #ffffff;
@@ -94,16 +94,16 @@ const UserLoginFooterButton = styled.button`
 `
 
 export {
-  UserLoginWrapper,
-  UserLoginInfo,
-  UserLoginHeader,
-  UserLoginForm,
-  UserLoginFormList,
-  UserLoginFormListItem,
-  UserLoginFormListInput,
-  UserLoginFormButton,
-  UserLoginHeaderButton,
-  UserLoginFooter,
-  UserLoginFooterText,
-  UserLoginFooterButton,
+  Wrapper,
+  Info,
+  Header,
+  Form,
+  FormList,
+  FormListItem,
+  FormListInput,
+  FormButton,
+  HeaderButton,
+  Footer,
+  FooterText,
+  FooterButton,
 }

@@ -1,14 +1,14 @@
 import React, { FC } from 'react'
 import { ModalWrapper, ModalContent } from './styled'
 import { useSelector, useDispatch } from 'react-redux'
-import { IPropsModal } from './IPropsModal'
-import { RootState } from '../../store'
+import { TypePropsModal } from './TypePropsModal'
+import { TypeRootState } from '../../store'
 import setModalStatusAction from '../../store/action/setModalStatusAction'
 
-const Modal: FC<IPropsModal> = ({ children }) => {
+const Modal: FC<TypePropsModal> = ({ children }) => {
   const dispatch = useDispatch()
   const status = useSelector(
-    (state: RootState) => state.setModalStatusReducer.status
+    (state: TypeRootState) => state.setModalStatusReducer.status
   )
 
   const closeModalDarkPlace = () => {

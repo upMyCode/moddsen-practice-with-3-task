@@ -1,14 +1,14 @@
-import IStatus from './IStatus'
-import TSetModalStatusAction from './TSetModalStatusAction'
+import TypeStatus from './TypeStatus'
+import TypeSetModalStatusAction from './TypeSetModalStatusAction'
 
-const initialState: IStatus = {
+const initialState: TypeStatus = {
   status: false,
   modalName: '',
 }
 
 const setModalStatusReducer = (
   state = initialState,
-  action: TSetModalStatusAction
+  action: TypeSetModalStatusAction
 ) => {
   switch (action.type) {
     case 'SET_MODAL_STATUS':

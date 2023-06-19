@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css'
 import { MyMap } from './styled'
 import marker from '../../assets/img/marker.png'
 import ChangeView from '../ChangeView'
-import { usePosition } from '../hooks/usePosition'
+import { usePosition } from '../../hooks/usePosition'
 
 const Map = () => {
   const height: string = '100vh'

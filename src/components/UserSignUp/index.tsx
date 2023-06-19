@@ -3,24 +3,22 @@ import ClearIcon from '@mui/icons-material/Clear'
 import { validationSchema } from './validationSchema'
 import { useDispatch } from 'react-redux'
 import setModalStatusAction from '../../store/action/setModalStatusAction'
-import setCurrentUserInfoAction from '../../store/action/setCurrentUserInfoAction'
 import CustomForm from '../../components/CustomForm'
-import IUserSignUp from './IUserSignUp'
+import TypeUserSignUp from './TypeUserSignUp'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebaseApp'
 import {
-  UserSignUpWrapper,
-  UserSignUpInfo,
-  UserSignUpHeader,
-  UserSignUpForm,
-  UserSignUpFormList,
-  UserSignUpFormListItem,
-  UserSignUpFormListInput,
-  UserSignUpFormButton,
-  UserSignUpHeaderButton,
-  UserSignUpFooter,
-  UserSignUpFooterButton,
-  UserSignUpFooterText,
+  Wrapper,
+  Info,
+  Header,
+  Form,
+  FormList,
+  FormListItem,
+  FormButton,
+  HeaderButton,
+  Footer,
+  FooterText,
+  FooterButton,
 } from './styled'
 
 const UserSignUp = () => {
@@ -36,8 +34,8 @@ const UserSignUp = () => {
   }
 
   const onSubmitDataSignUp = async (
-    values: IUserSignUp,
-    actions: FormikHelpers<IUserSignUp>
+    values: TypeUserSignUp,
+    actions: FormikHelpers<TypeUserSignUp>
   ) => {
     try {
       const registredUser = await createUserWithEmailAndPassword(
@@ -55,7 +53,7 @@ const UserSignUp = () => {
     }
   }
 
-  const initialValues: IUserSignUp = {
+  const initialValues: TypeUserSignUp = {
     email: '',
     password: '',
     confirm_password: '',
@@ -78,18 +76,18 @@ const UserSignUp = () => {
         handleSubmit,
         dirty,
       }) => (
-        <UserSignUpWrapper onClick={(e) => e.stopPropagation()}>
-          <UserSignUpInfo>
-            <UserSignUpHeader>Sign up</UserSignUpHeader>
-            <UserSignUpHeaderButton type='button' onClick={closeModal}>
+        <Wrapper onClick={(e) => e.stopPropagation()}>
+          <Info>
+            <Header>Sign up</Header>
+            <HeaderButton type='button' onClick={closeModal}>
               <ClearIcon
                 sx={{ color: '#6B7280', '&:hover': { color: '#000000' } }}
               />
-            </UserSignUpHeaderButton>
-          </UserSignUpInfo>
-          <UserSignUpForm onSubmit={handleSubmit}>
-            <UserSignUpFormList>
-              <UserSignUpFormListItem>
+            </HeaderButton>
+          </Info>
+          <Form onSubmit={handleSubmit}>
+            <FormList>
+              <FormListItem>
                 <CustomForm
                   formValue={values.email}
                   formName='email'
@@ -102,8 +100,8 @@ const UserSignUp = () => {
                   isValid={isValid}
                   dirty={dirty}
                 />
-              </UserSignUpFormListItem>
-              <UserSignUpFormListItem>
+              </FormListItem>
+              <FormListItem>
                 <CustomForm
                   formValue={values.password}
                   formName='password'
@@ -116,8 +114,8 @@ const UserSignUp = () => {
                   isValid={isValid}
                   dirty={dirty}
                 />
-              </UserSignUpFormListItem>
-              <UserSignUpFormListItem>
+              </FormListItem>
+              <FormListItem>
                 <CustomForm
                   formValue={values.confirm_password}
                   formName='confirm_password'
@@ -130,27 +128,22 @@ const UserSignUp = () => {
                   isValid={isValid}
                   dirty={dirty}
                 />
-              </UserSignUpFormListItem>
-              <UserSignUpFormListItem>
-                <UserSignUpFormButton
+              </FormListItem>
+              <FormListItem>
+                <FormButton
                   disabled={!(isValid && dirty)}
                   isallformfilled={(isValid && dirty).toString()}
                 >
                   Create account
-                </UserSignUpFormButton>
-              </UserSignUpFormListItem>
-            </UserSignUpFormList>
-          </UserSignUpForm>
-          <UserSignUpFooter>
-            <UserSignUpFooterText>
-              Already have an account?
-            </UserSignUpFooterText>
-            <UserSignUpFooterButton onClick={redirectToLogIn}>
-              {' '}
-              Log in!{' '}
-            </UserSignUpFooterButton>
-          </UserSignUpFooter>
-        </UserSignUpWrapper>
+                </FormButton>
+              </FormListItem>
+            </FormList>
+          </Form>
+          <Footer>
+            <FooterText>Already have an account?</FooterText>
+            <FooterButton onClick={redirectToLogIn}> Log in! </FooterButton>
+          </Footer>
+        </Wrapper>
       )}
     </Formik>
   )

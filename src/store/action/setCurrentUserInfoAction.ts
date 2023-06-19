@@ -1,6 +1,6 @@
-import IUser from './IUser'
+import TypeUser from './TypeUser'
 
-const setCurrentUserInfoAction = (user: IUser | null) => ({
+const setCurrentUserInfoAction = (user: TypeUser | null) => ({
   payload: user,
   type: 'SET_CURRENT_USER',
 })

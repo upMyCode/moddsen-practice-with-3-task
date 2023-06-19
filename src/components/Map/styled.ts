@@ -1,8 +1,8 @@
 import { MapContainer } from 'react-leaflet'
 import styled from 'styled-components'
-import TMyMap from './TMyMap'
+import TypeMyMap from './TypeMyMap'
 
-const MyMap = styled(MapContainer)<TMyMap>`
+const MyMap = styled(MapContainer)<TypeMyMap>`
   height: ${(props) => props.height};
   width: 100%;
 `

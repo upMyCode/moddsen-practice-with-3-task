@@ -1,6 +1,6 @@
-import ILocationData from './ILocationData'
+import TypeLocationData from './TypeLocationData'
 
-const setUserPositionAction = (location: ILocationData) => ({
+const setUserPositionAction = (location: TypeLocationData) => ({
   payload: location,
   type: 'SET_USER_POSITION',
 })

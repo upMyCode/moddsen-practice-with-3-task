@@ -1,43 +1,50 @@
 import ClearIcon from '@mui/icons-material/Clear'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { auth } from '../../firebaseApp'
+import { signOut } from 'firebase/auth'
+import { TypeRootState } from '../../store'
 import setModalStatusAction from '../../store/action/setModalStatusAction'
-import {
-  UserLogoutWrapper,
-  UserLogoutInfo,
-  UserLogoutHeader,
-  UserLogoutButton,
-  UserLoginHeaderButton,
-  UserLogoutFooter,
-} from './styled'
+import { Wrapper, Info, Header, Button, Footer } from './styled'
 
 const UserLogOut = () => {
   const dispatch = useDispatch()
+  const user = useSelector(
+    (state: TypeRootState) => state.setCurrentUserInfoReducer
+  )
 
   const closeModal = () => {
     dispatch(setModalStatusAction({ status: false, modalName: 'log-out' }))
   }
 
   const handleLogout = async () => {
-    dispatch(setModalStatusAction({ status: false, modalName: 'log-out' }))
-    dispatch(
-      setModalStatusAction({ status: true, modalName: 'log-out-confirm' })
-    )
+    try {
+      if (user) {
+        await signOut(auth)
+        dispatch(
+          setModalStatusAction({ status: false, modalName: 'log-out-confirm' })
+        )
+      } else {
+        throw new Error('You are not log in to the app!')
+      }
+    } catch (e: unknown) {
+      console.log(e)
+    }
   }
 
   return (
-    <UserLogoutWrapper onClick={(e) => e.stopPropagation()}>
-      <UserLogoutInfo>
-        <UserLogoutHeader>Log in</UserLogoutHeader>
-        <UserLoginHeaderButton type='button' onClick={closeModal}>
-          <ClearIcon
-            sx={{ color: '#6B7280', '&:hover': { color: '#000000' } }}
-          />
-        </UserLoginHeaderButton>
-      </UserLogoutInfo>
-      <UserLogoutFooter>
-        <UserLogoutButton onClick={handleLogout}>Log out</UserLogoutButton>
-      </UserLogoutFooter>
-    </UserLogoutWrapper>
+    <Wrapper onClick={(e) => e.stopPropagation()}>
+      <Info>
+        <Header>Log out from the app?</Header>
+      </Info>
+      <Footer>
+        <Button color='confirm' onClick={handleLogout}>
+          Log out
+        </Button>
+        <Button color='reject' onClick={closeModal}>
+          Exit
+        </Button>
+      </Footer>
+    </Wrapper>
   )
 }
 

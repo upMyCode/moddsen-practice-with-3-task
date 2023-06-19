@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../store'
-import setUserPositionAction from '../../store/action/setUserPositionAction'
-import { LatLngTuple } from 'leaflet'
+import { TypeRootState } from '../store'
+import setUserPositionAction from '../store/action/setUserPositionAction'
 
 export const usePosition = () => {
   const [error, setError] = useState<string | null>(null)
@@ -23,10 +22,10 @@ export const usePosition = () => {
   }
 
   const locationData = useSelector(
-    (state: RootState) => state.setUserPositionReducer
+    (state: TypeRootState) => state.setUserPositionReducer
   )
 
-  const { coords, zoom} = locationData
+  const { coords, zoom } = locationData
 
   useEffect(() => {
     const geo = navigator.geolocation
@@ -36,7 +35,7 @@ export const usePosition = () => {
       return
     }
 
-    let watcher = geo.watchPosition(onChange, onError)
+    const watcher = geo.watchPosition(onChange, onError)
 
     return () => geo.clearWatch(watcher)
   }, [])

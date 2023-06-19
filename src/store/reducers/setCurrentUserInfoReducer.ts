@@ -1,9 +1,9 @@
-import TSetCurrentUserInfoAction from './TSetCurrentUserInfoAction'
+import TypeSetCurrentUserInfoAction from './TypeSetCurrentUserInfoAction'
 
 const initialState: null = null
 const setCurrentUserInfoReducer = (
   state: null = initialState,
-  action: TSetCurrentUserInfoAction
+  action: TypeSetCurrentUserInfoAction
 ) => {
   switch (action.type) {
     case 'SET_CURRENT_USER':
