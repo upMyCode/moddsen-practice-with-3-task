@@ -3,19 +3,7 @@ import {
   CustomFormWrapper,
   CustomFormError,
 } from './styled'
-
-interface ICustomForm {
-  formValue?: string
-  formName?: string
-  formOnBlur?: React.FocusEventHandler<HTMLInputElement> | undefined
-  formOnChange?: React.ChangeEventHandler<HTMLInputElement> | undefined
-  formPlaceholder?: string
-  error?: string | undefined
-  isValid?: boolean
-  touched?: boolean | undefined
-  dirty?: boolean
-  formType?: string
-}
+import TypeCustomForm from './TypeCustomForm'
 
 const CustomForm = ({
   formValue,
@@ -27,8 +15,9 @@ const CustomForm = ({
   touched,
   isValid,
   dirty,
+  serverError,
   formType,
-}: ICustomForm) => {
+}: TypeCustomForm) => {
   return (
     <CustomFormWrapper>
       <UserSignUpFormListInput
@@ -41,6 +30,7 @@ const CustomForm = ({
         type={formType}
       />
       {error && touched && <CustomFormError>* {error}</CustomFormError>}
+      {serverError && <CustomFormError>* {serverError}</CustomFormError>}
     </CustomFormWrapper>
   )
 }

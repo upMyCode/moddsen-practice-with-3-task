@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import { Formik, FormikHelpers } from 'formik'
 import ClearIcon from '@mui/icons-material/Clear'
 import { validationSchema } from './validationSchema'
@@ -5,6 +6,8 @@ import { useDispatch } from 'react-redux'
 import setModalStatusAction from '../../store/action/setModalStatusAction'
 import CustomForm from '../../components/CustomForm'
 import TypeUserSignUp from './TypeUserSignUp'
+import { FirebaseError } from '@firebase/util'
+import { AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY } from '../../constants/firebaseErorsList'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebaseApp'
 import {
@@ -22,6 +25,7 @@ import {
 } from './styled'
 
 const UserSignUp = () => {
+  const [serverError, setServerError] = useState<string | null>(null)
   const dispatch = useDispatch()
 
   const redirectToLogIn = () => {
@@ -48,8 +52,14 @@ const UserSignUp = () => {
         dispatch(setModalStatusAction({ status: false, modalName: 'sign-up' }))
         dispatch(setModalStatusAction({ status: true, modalName: 'log-in' }))
       }
-    } catch (e: any) {
-      console.log(e.code)
+    } catch (e: unknown) {
+      if (e instanceof FirebaseError) {
+        const errorCode: string = e.code
+
+        if (errorCode) {
+          setServerError(AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY[errorCode as keyof typeof AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY])
+        }
+      }
     }
   }
 
@@ -127,6 +137,7 @@ const UserSignUp = () => {
                   touched={touched.confirm_password}
                   isValid={isValid}
                   dirty={dirty}
+                  serverError={serverError}
                 />
               </FormListItem>
               <FormListItem>
