@@ -1,4 +1,3 @@
-import ClearIcon from '@mui/icons-material/Clear'
 import { useDispatch, useSelector } from 'react-redux'
 import { auth } from '../../firebaseApp'
 import { signOut } from 'firebase/auth'

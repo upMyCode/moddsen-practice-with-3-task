@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-const Input = styled.input`
-  width: 240px;
+const Input = styled.input<{ width: string }>`
+  width: ${(props) => props.width}px;
   padding: 10px 40px 10px 40px;
-  border-radius: 10px;
+  border-radius: 6px;
   border: 3px solid #c4c4c4;
 `
 const Wrapper = styled.div`

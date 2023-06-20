@@ -6,21 +6,6 @@ import setUserPositionAction from '../store/action/setUserPositionAction'
 export const usePosition = () => {
   const [error, setError] = useState<string | null>(null)
   const dispatch = useDispatch()
-
-  const onChange = (posLoc: any) => {
-    const { latitude, longitude } = posLoc.coords
-    dispatch(
-      setUserPositionAction({
-        coords: [latitude, longitude],
-        zoom: 12,
-      })
-    )
-  }
-
-  const onError = (error: any) => {
-    setError(error.message)
-  }
-
   const locationData = useSelector(
     (state: TypeRootState) => state.setUserPositionReducer
   )
@@ -28,6 +13,21 @@ export const usePosition = () => {
   const { coords, zoom } = locationData
 
   useEffect(() => {
+    const onChange = (posLoc: any) => {
+      const { latitude, longitude } = posLoc.coords
+
+      dispatch(
+        setUserPositionAction({
+          coords: [latitude, longitude],
+          zoom: 12,
+        })
+      )
+    }
+
+    const onError = (error: any) => {
+      setError(error.message)
+    }
+
     const geo = navigator.geolocation
 
     if (!geo) {
@@ -38,7 +38,7 @@ export const usePosition = () => {
     const watcher = geo.watchPosition(onChange, onError)
 
     return () => geo.clearWatch(watcher)
-  }, [])
+  }, [dispatch])
 
   return { coords, zoom, error }
 }
