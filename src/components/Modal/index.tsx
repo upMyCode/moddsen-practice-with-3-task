@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import type { TypeRootState } from '../../store';
 import setModalStatusAction from '../../store/action/setModalStatusAction';
-import { ModalContent, ModalWrapper } from './styled';
+import { ModalContainer, ModalContent, ModalWrapper } from './styled';
 import type { TypePropsModal } from './TypePropsModal';
 
+// eslint-disable-next-line react/function-component-definition
 const Modal: FC<TypePropsModal> = ({ children }) => {
   const dispatch = useDispatch();
   const status = useSelector(
@@ -18,13 +19,13 @@ const Modal: FC<TypePropsModal> = ({ children }) => {
   };
 
   return (
-    <>
+    <ModalContainer>
       {status && (
         <ModalWrapper>
           <ModalContent onClick={closeModalDarkPlace}>{children}</ModalContent>
         </ModalWrapper>
       )}
-    </>
+    </ModalContainer>
   );
 };
 

@@ -4,4 +4,8 @@ const HomePageWrapper = styled.div`
   display: flex;
 `;
 
-export default HomePageWrapper;
+const SearchPageWrapper = styled.div`
+  display: flex;
+`;
+
+export { HomePageWrapper, SearchPageWrapper };

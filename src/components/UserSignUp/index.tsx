@@ -24,7 +24,7 @@ import {
   Wrapper,
 } from './styled';
 import type TypeUserSignUp from './TypeUserSignUp';
-import { validationSchema } from './validationSchema';
+import validationSchema from './validationSchema';
 
 function UserSignUp() {
   const [serverError, setServerError] = useState<string | null>(null);

@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { FirebaseError } from '@firebase/util';
 import ClearIcon from '@mui/icons-material/Clear';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Formik } from 'formik';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Cookies from 'js-cookie';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -12,9 +15,6 @@ import setCurrentUserInfoAction from '../../store/action/setCurrentUserInfoActio
 import setModalStatusAction from '../../store/action/setModalStatusAction';
 import CustomForm from '../CustomForm';
 import {
-  Footer,
-  FooterButton,
-  FooterText,
   Form,
   FormButton,
   FormList,
@@ -25,7 +25,7 @@ import {
   Wrapper,
 } from './styled';
 import type TypeUserLogin from './TypeUserLogin';
-import { validationSchema } from './validationSchema';
+import validationSchema from './validationSchema';
 
 function UserLogIn() {
   const [serverError, setServerError] = useState<string | null>(null);
@@ -50,8 +50,10 @@ function UserLogIn() {
 
       if (existUserData) {
         const { email, uid } = existUserData.user;
+        const userDataForCookies = JSON.stringify({ email, uid });
         dispatch(setCurrentUserInfoAction({ userEmail: email, uid }));
         dispatch(setModalStatusAction({ status: false, modalName: 'log-in' }));
+        Cookies.set('user', userDataForCookies, { expires: 7 });
       }
     } catch (e: unknown) {
       if (e instanceof FirebaseError) {
@@ -140,10 +142,6 @@ function UserLogIn() {
               </FormListItem>
             </FormList>
           </Form>
-          <Footer>
-            <FooterText>Do you want log out?</FooterText>
-            <FooterButton onClick={redirectToLogOut}> Log out</FooterButton>
-          </Footer>
         </Wrapper>
       )}
     </Formik>

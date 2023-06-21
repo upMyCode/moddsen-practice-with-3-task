@@ -3,22 +3,24 @@ import { useSelector } from 'react-redux';
 
 import Map from '../../components/Map';
 import Navbar from '../../components/Navbar';
+import Sidebar from '../../components/Sidebar';
 import ViewForm from '../../components/ViewForm';
 import type { TypeRootState } from '../../store';
-import { HomePageWrapper } from '../styled';
+import { SearchPageWrapper } from '../styled';
 
-function HomePage() {
+function SearchPage() {
   const redirection = useSelector(
     (state: TypeRootState) => state.setModalStatusReducer,
   );
 
   return (
-    <HomePageWrapper>
+    <SearchPageWrapper>
       <ViewForm status={redirection.status} modalName={redirection.modalName} />
       <Navbar />
+      <Sidebar />
       <Map />
-    </HomePageWrapper>
+    </SearchPageWrapper>
   );
 }
 
-export default HomePage;
+export default SearchPage;

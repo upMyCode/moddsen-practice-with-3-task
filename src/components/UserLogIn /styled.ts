@@ -68,35 +68,14 @@ const FormButton = styled.button<{
   color: white;
   text-align: center;
   cursor: pointer;
-  margin: 12px 0 12px 0;
+  margin: 12px 0 32px 0;
   border: none;
   &: focus {
     outline: none;
   }
 `;
-const Footer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-`;
-const FooterText = styled.p`
-  margin-right: 4px;
-`;
-const FooterButton = styled.button`
-  color: #2563eb;
-  border: none;
-  background-color: #ffffff;
-  -webkit-appearance: none;
-  cursor: pointer;
-  &: hover {
-    text-decoration: underline;
-  }
-`;
 
 export {
-  Footer,
-  FooterButton,
-  FooterText,
   Form,
   FormButton,
   FormList,

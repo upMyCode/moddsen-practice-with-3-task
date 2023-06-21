@@ -7,12 +7,15 @@ const Wrapper = styled.aside`
   box-shadow: 0 10px 10px rgb(0 0 0 / 0.25);
   z-index: 10;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const Input = styled.input<{ width: string }>`
@@ -23,8 +26,8 @@ const Input = styled.input<{ width: string }>`
 `;
 const RadiusContainer = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
-  margin-bottom: 250px;
 `;
 const RadiusInfo = styled.h1`
   font-size: 18px;
@@ -51,7 +54,7 @@ const SightsInfo = styled.h1`
 `;
 
 const SearchButton = styled.button`
-  width: 100%;
+  width: 200px;
   height: 38px;
   background-color: #2563eb;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
@@ -60,7 +63,7 @@ const SearchButton = styled.button`
   color: white;
   text-align: center;
   cursor: pointer;
-  margin: 12px 0 12px 0;
+  margin: 12px 0 40px 0;
   border: none;
   &: focus {
     outline: none;

@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
+import setDistanceRadiusAction from '../../store/action/setDistanceRadiusAction';
 import SearchBar from '../SearchBar';
 import {
   Content,
@@ -14,6 +16,10 @@ import {
 } from './styled';
 
 function Sidebar() {
+  const dispatch = useDispatch();
+  const handleRadius = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setDistanceRadiusAction(e.target.value));
+  };
   return (
     <Wrapper>
       <Content>
@@ -24,10 +30,10 @@ function Sidebar() {
         </SightsContainer>
         <RadiusContainer>
           <RadiusInfo>В радиусe :</RadiusInfo>
-          <Input placeholder="0 км" width="80" />
+          <Input onChange={handleRadius} placeholder="0 м" width="80" />
         </RadiusContainer>
-        <SearchButton>Search</SearchButton>
       </Content>
+      <SearchButton>Search</SearchButton>
     </Wrapper>
   );
 }

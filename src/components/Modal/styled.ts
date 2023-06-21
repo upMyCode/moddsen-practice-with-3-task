@@ -15,4 +15,7 @@ const ModalContent = styled.div`
   align-items: center;
   height: 100%;
 `;
-export { ModalContent, ModalWrapper };
+
+const ModalContainer = styled.div``;
+
+export { ModalContainer, ModalContent, ModalWrapper };
