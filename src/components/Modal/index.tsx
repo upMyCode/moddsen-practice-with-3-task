@@ -1,19 +1,21 @@
-import React, { FC } from 'react'
-import { ModalWrapper, ModalContent } from './styled'
-import { useSelector, useDispatch } from 'react-redux'
-import { TypePropsModal } from './TypePropsModal'
-import { TypeRootState } from '../../store'
-import setModalStatusAction from '../../store/action/setModalStatusAction'
+import type { FC } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import type { TypeRootState } from '../../store';
+import setModalStatusAction from '../../store/action/setModalStatusAction';
+import { ModalContent, ModalWrapper } from './styled';
+import type { TypePropsModal } from './TypePropsModal';
 
 const Modal: FC<TypePropsModal> = ({ children }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const status = useSelector(
-    (state: TypeRootState) => state.setModalStatusReducer.status
-  )
+    (state: TypeRootState) => state.setModalStatusReducer.status,
+  );
 
   const closeModalDarkPlace = () => {
-    dispatch(setModalStatusAction({ status: !status }))
-  }
+    dispatch(setModalStatusAction({ status: !status }));
+  };
 
   return (
     <>
@@ -23,7 +25,7 @@ const Modal: FC<TypePropsModal> = ({ children }) => {
         </ModalWrapper>
       )}
     </>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

@@ -1,6 +1,6 @@
 type TypeNavbarItemImg = {
-  width?: string
-  height?: string
-}
+  width?: string;
+  height?: string;
+};
 
-export default TypeNavbarItemImg
+export default TypeNavbarItemImg;

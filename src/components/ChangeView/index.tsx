@@ -1,13 +1,14 @@
-import { useMap } from 'react-leaflet'
-import { usePosition } from '../../hooks/usePosition'
+import { useMap } from 'react-leaflet';
 
-const ChangeView = () => {
-  const { coords, zoom } = usePosition()
-  const map = useMap()
+import usePosition from '../../hooks/usePosition';
 
-  map.setView(coords, zoom)
+function ChangeView() {
+  const { coords, zoom } = usePosition();
+  const map = useMap();
 
-  return null
+  map.setView(coords, zoom);
+
+  return null;
 }
 
-export default ChangeView
+export default ChangeView;

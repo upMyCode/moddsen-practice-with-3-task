@@ -1,6 +1,7 @@
-import styled from 'styled-components'
-import TypeNavbarItem from './TypeNavbarItem'
-import TypeNavbarItemImg from './TypeNavbarItemImg'
+import styled from 'styled-components';
+
+import type TypeNavbarItem from './TypeNavbarItem';
+import type TypeNavbarItemImg from './TypeNavbarItemImg';
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -10,12 +11,12 @@ const NavbarContainer = styled.nav`
   background: #ffffff;
   border-right: 2px solid #c4c4c4;
   height: 100vh;
-`
+`;
 const NavbarList = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
 
 const NavbarItem = styled.li<TypeNavbarItem>`
   list-style: none;
@@ -30,11 +31,11 @@ const NavbarItem = styled.li<TypeNavbarItem>`
   border-radius: ${(props) => (props.radius ? props.radius : '')};
   background-color: ${(props) => (props.bgcolor ? props.bgcolor : '')};
   border: ${(props) => (props.border ? props.border : '')};
-`
+`;
 
 const NavbarItemImg = styled.img<TypeNavbarItemImg>`
   width: ${(props) => (props.width ? props.height : '')};
   height: ${(props) => (props.width ? props.height : '')};
-`
+`;
 
-export { NavbarContainer, NavbarList, NavbarItem, NavbarItemImg }
+export { NavbarContainer, NavbarItem, NavbarItemImg, NavbarList };

@@ -1,17 +1,18 @@
-import { createStore, combineReducers } from 'redux'
-import setUserPositionReducer from './reducers/setUserPositionReducer'
-import setModalStatusReducer from './reducers/setModalStatusReducer'
-import setCurrentUserInfoReducer from './reducers/setCurrentUserInfoReducer'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { combineReducers, createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+import setCurrentUserInfoReducer from './reducers/setCurrentUserInfoReducer';
+import setModalStatusReducer from './reducers/setModalStatusReducer';
+import setUserPositionReducer from './reducers/setUserPositionReducer';
 
 const reducers = combineReducers({
   setUserPositionReducer,
   setModalStatusReducer,
   setCurrentUserInfoReducer,
-})
+});
 
-const store = createStore(reducers, composeWithDevTools())
+const store = createStore(reducers, composeWithDevTools());
 
-export default store
+export default store;
 
-export type TypeRootState = ReturnType<typeof store.getState>
+export type TypeRootState = ReturnType<typeof store.getState>;

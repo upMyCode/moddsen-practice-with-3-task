@@ -1,4 +1,4 @@
-import * as yup from 'yup'
+import * as yup from 'yup';
 
 export const validationSchema = yup.object().shape({
   email: yup
@@ -9,7 +9,7 @@ export const validationSchema = yup.object().shape({
     .string()
     .matches(
       /^((?=^\S+$)(?=.*\d)(?=.*[a-zA-Z]).{8,})$/,
-      'Password must be at least 8 characters, letters, numbers and no spaces!'
+      'Password must be at least 8 characters, letters, numbers and no spaces!',
     )
     .required('The Password is required'),
-})
+});

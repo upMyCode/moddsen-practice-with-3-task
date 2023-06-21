@@ -1,5 +1,6 @@
-import React, { ReactElement, ReactNode } from 'react'
+import type { ReactElement, ReactNode } from 'react';
+import React from 'react';
 
 export interface TypePropsModal {
-  children?: ReactElement | ReactNode[]
+  children?: ReactElement | ReactNode[];
 }

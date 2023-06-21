@@ -1,6 +1,6 @@
 interface TypeViewForm {
-  status: boolean
-  modalName: string | undefined
+  status: boolean;
+  modalName: string | undefined;
 }
 
-export default TypeViewForm
+export default TypeViewForm;

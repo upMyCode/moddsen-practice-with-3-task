@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const ModalWrapper = styled.div`
   width: 100%;
@@ -8,11 +8,11 @@ const ModalWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-`
+`;
 const ModalContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-`
-export { ModalWrapper, ModalContent }
+`;
+export { ModalContent, ModalWrapper };

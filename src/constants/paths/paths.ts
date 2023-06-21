@@ -1,5 +1,5 @@
 enum PATHS {
-    HOME = '/'
+  HOME = '/',
 }
 
-export default PATHS
+export default PATHS;

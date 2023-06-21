@@ -1,11 +1,13 @@
-import {
-  UserSignUpFormListInput,
-  CustomFormWrapper,
-  CustomFormError,
-} from './styled'
-import TypeCustomForm from './TypeCustomForm'
+import React from 'react';
 
-const CustomForm = ({
+import {
+  CustomFormError,
+  CustomFormWrapper,
+  UserSignUpFormListInput,
+} from './styled';
+import type TypeCustomForm from './TypeCustomForm';
+
+function CustomForm({
   formValue,
   formName,
   formOnBlur,
@@ -13,11 +15,9 @@ const CustomForm = ({
   formPlaceholder,
   error,
   touched,
-  isValid,
-  dirty,
   serverError,
   formType,
-}: TypeCustomForm) => {
+}: TypeCustomForm) {
   return (
     <CustomFormWrapper>
       <UserSignUpFormListInput
@@ -32,7 +32,7 @@ const CustomForm = ({
       {error && touched && <CustomFormError>* {error}</CustomFormError>}
       {serverError && <CustomFormError>* {serverError}</CustomFormError>}
     </CustomFormWrapper>
-  )
+  );
 }
 
-export default CustomForm
+export default CustomForm;

@@ -1,78 +1,77 @@
-import React, { useState } from 'react'
-import { Formik, FormikHelpers } from 'formik'
-import ClearIcon from '@mui/icons-material/Clear'
-import { validationSchema } from './validationSchema'
-import { useDispatch } from 'react-redux'
-import setModalStatusAction from '../../store/action/setModalStatusAction'
-import CustomForm from '../CustomForm'
-import TypeUserLogin from './TypeUserLogin'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import setCurrentUserInfoAction from '../../store/action/setCurrentUserInfoAction'
-import { FirebaseError } from '@firebase/util'
-import { AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY } from '../../constants/firebaseErorsList'
-import { auth } from '../../firebaseApp'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FirebaseError } from '@firebase/util';
+import ClearIcon from '@mui/icons-material/Clear';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { Formik } from 'formik';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY from '../../constants/firebaseErorsList';
+import { auth } from '../../firebaseApp';
+import setCurrentUserInfoAction from '../../store/action/setCurrentUserInfoAction';
+import setModalStatusAction from '../../store/action/setModalStatusAction';
+import CustomForm from '../CustomForm';
 import {
-  Wrapper,
-  Info,
-  Header,
+  Footer,
+  FooterButton,
+  FooterText,
   Form,
+  FormButton,
   FormList,
   FormListItem,
-  FormButton,
+  Header,
   HeaderButton,
-  Footer,
-  FooterText,
-  FooterButton,
-} from './styled'
+  Info,
+  Wrapper,
+} from './styled';
+import type TypeUserLogin from './TypeUserLogin';
+import { validationSchema } from './validationSchema';
 
-const UserLogIn = () => {
-  const [serverError, setServerError] = useState<string | null>(null)
-  const dispatch = useDispatch()
+function UserLogIn() {
+  const [serverError, setServerError] = useState<string | null>(null);
+  const dispatch = useDispatch();
 
   const redirectToLogOut = () => {
-    dispatch(setModalStatusAction({ status: false, modalName: 'log-in' }))
-    dispatch(setModalStatusAction({ status: true, modalName: 'log-out' }))
-  }
+    dispatch(setModalStatusAction({ status: false, modalName: 'log-in' }));
+    dispatch(setModalStatusAction({ status: true, modalName: 'log-out' }));
+  };
 
   const closeModal = () => {
-    dispatch(setModalStatusAction({ status: false, modalName: 'log-in' }))
-  }
+    dispatch(setModalStatusAction({ status: false, modalName: 'log-in' }));
+  };
 
-  const onSubmitDataLogin = async (
-    values: TypeUserLogin,
-    actions: FormikHelpers<TypeUserLogin>
-  ) => {
+  const onSubmitDataLogin = async (values: TypeUserLogin) => {
     try {
       const existUserData = await signInWithEmailAndPassword(
         auth,
         values.email,
-        values.password
-      )
+        values.password,
+      );
 
       if (existUserData) {
-        const { email, uid } = existUserData.user
-        dispatch(setCurrentUserInfoAction({ userEmail: email, uid }))
-        dispatch(setModalStatusAction({ status: false, modalName: 'log-in' }))
+        const { email, uid } = existUserData.user;
+        dispatch(setCurrentUserInfoAction({ userEmail: email, uid }));
+        dispatch(setModalStatusAction({ status: false, modalName: 'log-in' }));
       }
     } catch (e: unknown) {
       if (e instanceof FirebaseError) {
-        const errorCode: string = e.code
+        const errorCode: string = e.code;
 
         if (errorCode) {
           setServerError(
             AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY[
               errorCode as keyof typeof AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY
-            ]
-          )
+            ],
+          );
         }
       }
     }
-  }
+  };
 
   const initialValues: TypeUserLogin = {
     email: '',
     password: '',
-  }
+  };
 
   return (
     <Formik
@@ -94,7 +93,7 @@ const UserLogIn = () => {
         <Wrapper onClick={(e) => e.stopPropagation()}>
           <Info>
             <Header>Log in</Header>
-            <HeaderButton type='button' onClick={closeModal}>
+            <HeaderButton type="button" onClick={closeModal}>
               <ClearIcon
                 sx={{ color: '#6B7280', '&:hover': { color: '#000000' } }}
               />
@@ -105,11 +104,11 @@ const UserLogIn = () => {
               <FormListItem>
                 <CustomForm
                   formValue={values.email}
-                  formName='email'
+                  formName="email"
                   formOnBlur={handleBlur}
                   formOnChange={handleChange}
-                  formPlaceholder='name@example.com'
-                  formType='email'
+                  formPlaceholder="name@example.com"
+                  formType="email"
                   error={errors.email}
                   touched={touched.email}
                   isValid={isValid}
@@ -119,11 +118,11 @@ const UserLogIn = () => {
               <FormListItem>
                 <CustomForm
                   formValue={values.password}
-                  formName='password'
+                  formName="password"
                   formOnBlur={handleBlur}
                   formOnChange={handleChange}
-                  formPlaceholder='Enter Password'
-                  formType='password'
+                  formPlaceholder="Enter Password"
+                  formType="password"
                   error={errors.password}
                   touched={touched.password}
                   isValid={isValid}
@@ -148,7 +147,7 @@ const UserLogIn = () => {
         </Wrapper>
       )}
     </Formik>
-  )
+  );
 }
 
-export default UserLogIn
+export default UserLogIn;

@@ -1,5 +1,5 @@
 type TypeMyMap = {
-  height: string
-}
+  height: string;
+};
 
-export default TypeMyMap
+export default TypeMyMap;

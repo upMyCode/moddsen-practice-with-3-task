@@ -1,23 +1,27 @@
-import Modal from '../../components/Modal'
-import UserSignUp from '../../components/UserSignUp'
-import UserLogin from '../../components/UserLogIn '
-import UserLogOut from '../../components/UserLogOut'
-import TypeViewForm from './TypeViewForm'
+import React from 'react';
 
-const ViewForm = ({ status, modalName }: TypeViewForm) => (
-  <>
-    {status && modalName && (
-      <Modal>
-        {modalName === 'sign-up' ? (
-          <UserSignUp />
-        ) : modalName === 'log-in' ? (
-          <UserLogin />
-        ) : (
-          <UserLogOut />
-        )}
-      </Modal>
-    )}
-  </>
-)
+import Modal from '../Modal';
+import UserLogin from '../UserLogIn ';
+import UserLogOut from '../UserLogOut';
+import UserSignUp from '../UserSignUp';
+import type TypeViewForm from './TypeViewForm';
 
-export default ViewForm
+function ViewForm({ status, modalName }: TypeViewForm) {
+  return (
+    <>
+      {status && modalName && (
+        <Modal>
+          {modalName === 'sign-up' ? (
+            <UserSignUp />
+          ) : modalName === 'log-in' ? (
+            <UserLogin />
+          ) : (
+            <UserLogOut />
+          )}
+        </Modal>
+      )}
+    </>
+  );
+}
+
+export default ViewForm;

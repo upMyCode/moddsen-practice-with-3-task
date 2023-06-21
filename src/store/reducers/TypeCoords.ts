@@ -1,8 +1,8 @@
-import { LatLngTuple } from 'leaflet'
+import type { LatLngTuple } from 'leaflet';
 
 type TypeCoords = {
-  coords: LatLngTuple
-  zoom: number
-}
+  coords: LatLngTuple;
+  zoom: number;
+};
 
-export default TypeCoords
+export default TypeCoords;

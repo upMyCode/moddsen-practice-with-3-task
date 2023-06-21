@@ -1,24 +1,27 @@
-import { TileLayer } from 'react-leaflet'
-import 'leaflet/dist/leaflet.css'
-import { MyMap } from './styled'
-import ChangeView from '../ChangeView'
-import { usePosition } from '../../hooks/usePosition'
-import LocationMarkers from '../LocationMarkers'
+import 'leaflet/dist/leaflet.css';
 
-const Map = () => {
-  const height: string = '100vh'
-  const { coords, zoom } = usePosition()
+import React from 'react';
+import { TileLayer } from 'react-leaflet';
+
+import usePosition from '../../hooks/usePosition';
+import ChangeView from '../ChangeView';
+import LocationMarkers from '../LocationMarkers';
+import MyMap from './styled';
+
+function Map() {
+  const height = '100vh';
+  const { coords, zoom } = usePosition();
 
   return (
     <MyMap height={height} center={coords} zoom={zoom}>
       <ChangeView />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <LocationMarkers />
     </MyMap>
-  )
+  );
 }
 
-export default Map
+export default Map;

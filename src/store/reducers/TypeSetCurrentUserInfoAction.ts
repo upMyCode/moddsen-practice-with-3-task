@@ -1,5 +1,5 @@
-import setCurrentUserInfoAction from '../action/setCurrentUserInfoAction'
+import type setCurrentUserInfoAction from '../action/setCurrentUserInfoAction';
 
-type TypeSetCurrentUserInfoAction = ReturnType<typeof setCurrentUserInfoAction>
+type TypeSetCurrentUserInfoAction = ReturnType<typeof setCurrentUserInfoAction>;
 
-export default TypeSetCurrentUserInfoAction
+export default TypeSetCurrentUserInfoAction;

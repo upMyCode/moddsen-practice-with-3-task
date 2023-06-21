@@ -1,6 +1,6 @@
 type TypeStatus = {
-  status: boolean
-  modalName?: string
-}
+  status: boolean;
+  modalName?: string;
+};
 
-export default TypeStatus
+export default TypeStatus;

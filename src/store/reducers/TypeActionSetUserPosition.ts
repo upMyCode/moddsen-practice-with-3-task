@@ -1,5 +1,5 @@
-import setUserPositionAction from '../action/setUserPositionAction'
+import type setUserPositionAction from '../action/setUserPositionAction';
 
-type TypeActionSetUserPosition = ReturnType<typeof setUserPositionAction>
+type TypeActionSetUserPosition = ReturnType<typeof setUserPositionAction>;
 
-export default TypeActionSetUserPosition
+export default TypeActionSetUserPosition;

@@ -1,9 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import { createGlobalStyle } from 'styled-components'
-import { Provider } from 'react-redux'
-import store from './store'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { createGlobalStyle } from 'styled-components';
+
+import App from './App';
+import store from './store';
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -14,9 +15,11 @@ const GlobalStyle = createGlobalStyle`
   #root {
     height: 100vh;
   }
-`
+`;
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement,
+);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -25,5 +28,5 @@ root.render(
         <App />
       </>
     </Provider>
-  </React.StrictMode>
-)
+  </React.StrictMode>,
+);

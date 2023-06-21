@@ -1,73 +1,76 @@
-import React, { useState } from 'react'
-import { Formik, FormikHelpers } from 'formik'
-import ClearIcon from '@mui/icons-material/Clear'
-import { validationSchema } from './validationSchema'
-import { useDispatch } from 'react-redux'
-import setModalStatusAction from '../../store/action/setModalStatusAction'
-import CustomForm from '../../components/CustomForm'
-import TypeUserSignUp from './TypeUserSignUp'
-import { FirebaseError } from '@firebase/util'
-import { AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY } from '../../constants/firebaseErorsList'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../firebaseApp'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { FirebaseError } from '@firebase/util';
+import ClearIcon from '@mui/icons-material/Clear';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { Formik } from 'formik';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY from '../../constants/firebaseErorsList';
+import { auth } from '../../firebaseApp';
+import setModalStatusAction from '../../store/action/setModalStatusAction';
+import CustomForm from '../CustomForm';
 import {
-  Wrapper,
-  Info,
-  Header,
+  Footer,
+  FooterButton,
+  FooterText,
   Form,
+  FormButton,
   FormList,
   FormListItem,
-  FormButton,
+  Header,
   HeaderButton,
-  Footer,
-  FooterText,
-  FooterButton,
-} from './styled'
+  Info,
+  Wrapper,
+} from './styled';
+import type TypeUserSignUp from './TypeUserSignUp';
+import { validationSchema } from './validationSchema';
 
-const UserSignUp = () => {
-  const [serverError, setServerError] = useState<string | null>(null)
-  const dispatch = useDispatch()
+function UserSignUp() {
+  const [serverError, setServerError] = useState<string | null>(null);
+  const dispatch = useDispatch();
 
   const redirectToLogIn = () => {
-    dispatch(setModalStatusAction({ status: false, modalName: 'sign-up' }))
-    dispatch(setModalStatusAction({ status: true, modalName: 'log-in' }))
-  }
+    dispatch(setModalStatusAction({ status: false, modalName: 'sign-up' }));
+    dispatch(setModalStatusAction({ status: true, modalName: 'log-in' }));
+  };
 
   const closeModal = () => {
-    dispatch(setModalStatusAction({ status: false, modalName: 'sign-up' }))
-  }
+    dispatch(setModalStatusAction({ status: false, modalName: 'sign-up' }));
+  };
 
-  const onSubmitDataSignUp = async (
-    values: TypeUserSignUp,
-    actions: FormikHelpers<TypeUserSignUp>
-  ) => {
+  const onSubmitDataSignUp = async (values: TypeUserSignUp) => {
     try {
       const registredUser = await createUserWithEmailAndPassword(
         auth,
         values.email,
-        values.password
-      )
+        values.password,
+      );
 
       if (registredUser) {
-        dispatch(setModalStatusAction({ status: false, modalName: 'sign-up' }))
-        dispatch(setModalStatusAction({ status: true, modalName: 'log-in' }))
+        dispatch(setModalStatusAction({ status: false, modalName: 'sign-up' }));
+        dispatch(setModalStatusAction({ status: true, modalName: 'log-in' }));
       }
     } catch (e: unknown) {
       if (e instanceof FirebaseError) {
-        const errorCode: string = e.code
+        const errorCode: string = e.code;
 
         if (errorCode) {
-          setServerError(AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY[errorCode as keyof typeof AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY])
+          setServerError(
+            AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY[
+              errorCode as keyof typeof AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY
+            ],
+          );
         }
       }
     }
-  }
+  };
 
   const initialValues: TypeUserSignUp = {
     email: '',
     password: '',
     confirm_password: '',
-  }
+  };
 
   return (
     <Formik
@@ -89,7 +92,7 @@ const UserSignUp = () => {
         <Wrapper onClick={(e) => e.stopPropagation()}>
           <Info>
             <Header>Sign up</Header>
-            <HeaderButton type='button' onClick={closeModal}>
+            <HeaderButton type="button" onClick={closeModal}>
               <ClearIcon
                 sx={{ color: '#6B7280', '&:hover': { color: '#000000' } }}
               />
@@ -100,11 +103,11 @@ const UserSignUp = () => {
               <FormListItem>
                 <CustomForm
                   formValue={values.email}
-                  formName='email'
+                  formName="email"
                   formOnBlur={handleBlur}
                   formOnChange={handleChange}
-                  formPlaceholder='name@example.com'
-                  formType='email'
+                  formPlaceholder="name@example.com"
+                  formType="email"
                   error={errors.email}
                   touched={touched.email}
                   isValid={isValid}
@@ -114,11 +117,11 @@ const UserSignUp = () => {
               <FormListItem>
                 <CustomForm
                   formValue={values.password}
-                  formName='password'
+                  formName="password"
                   formOnBlur={handleBlur}
                   formOnChange={handleChange}
-                  formPlaceholder='Enter Password'
-                  formType='password'
+                  formPlaceholder="Enter Password"
+                  formType="password"
                   error={errors.password}
                   touched={touched.password}
                   isValid={isValid}
@@ -128,11 +131,11 @@ const UserSignUp = () => {
               <FormListItem>
                 <CustomForm
                   formValue={values.confirm_password}
-                  formName='confirm_password'
+                  formName="confirm_password"
                   formOnBlur={handleBlur}
                   formOnChange={handleChange}
-                  formType='password'
-                  formPlaceholder='Repeat Password'
+                  formType="password"
+                  formPlaceholder="Repeat Password"
                   error={errors.confirm_password}
                   touched={touched.confirm_password}
                   isValid={isValid}
@@ -157,7 +160,7 @@ const UserSignUp = () => {
         </Wrapper>
       )}
     </Formik>
-  )
+  );
 }
 
-export default UserSignUp
+export default UserSignUp;

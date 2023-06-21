@@ -1,8 +1,8 @@
-import { LatLngTuple } from 'leaflet'
+import type { LatLngTuple } from 'leaflet';
 
 interface TypeLocationData {
-  coords: LatLngTuple
-  zoom: number
+  coords: LatLngTuple;
+  zoom: number;
 }
 
-export default TypeLocationData
+export default TypeLocationData;

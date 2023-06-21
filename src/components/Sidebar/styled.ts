@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Wrapper = styled.aside`
   background-color: white;
@@ -8,33 +8,33 @@ const Wrapper = styled.aside`
   z-index: 10;
   display: flex;
   justify-content: center;
-`
+`;
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
 
 const Input = styled.input<{ width: string }>`
   width: ${(props) => props.width}px;
   padding: 10px 25px 10px 20px;
   border-radius: 10px;
   border: 3px solid #c4c4c4;
-`
+`;
 const RadiusContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 250px;
-`
+`;
 const RadiusInfo = styled.h1`
   font-size: 18px;
   margin-top: 15px;
   margin-bottom: 15px;
-`
+`;
 
 const SightsContainer = styled.div`
   width: 100%;
-`
+`;
 
 const SightsList = styled.div`
   max-height: 400px;
@@ -42,13 +42,13 @@ const SightsList = styled.div`
   width: 100%;
   border-radius: 10px;
   border: 3px solid #c4c4c4;
-`
+`;
 
 const SightsInfo = styled.h1`
   font-size: 18px;
   margin-top: 15px;
   margin-bottom: 15px;
-`
+`;
 
 const SearchButton = styled.button`
   width: 100%;
@@ -65,15 +65,15 @@ const SearchButton = styled.button`
   &: focus {
     outline: none;
   }
-`
+`;
 export {
-  Wrapper,
+  Content,
   Input,
   RadiusContainer,
   RadiusInfo,
-  Content,
-  SightsContainer,
-  SightsList,
-  SightsInfo,
   SearchButton,
-}
+  SightsContainer,
+  SightsInfo,
+  SightsList,
+  Wrapper,
+};

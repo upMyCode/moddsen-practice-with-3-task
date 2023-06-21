@@ -1,33 +1,35 @@
+import React from 'react';
+
+import SearchBar from '../SearchBar';
 import {
-  Wrapper,
+  Content,
   Input,
   RadiusContainer,
   RadiusInfo,
-  Content,
-  SightsContainer,
-  SightsList,
-  SightsInfo,
   SearchButton,
-} from './styled'
-import SearchBar from '../../components/SearchBar'
+  SightsContainer,
+  SightsInfo,
+  SightsList,
+  Wrapper,
+} from './styled';
 
-const Sidebar = () => {
+function Sidebar() {
   return (
     <Wrapper>
       <Content>
-        <SearchBar width='250' />
+        <SearchBar width="250" />
         <SightsContainer>
           <SightsInfo>Искать :</SightsInfo>
           <SightsList>Here should be content</SightsList>
         </SightsContainer>
         <RadiusContainer>
           <RadiusInfo>В радиусe :</RadiusInfo>
-          <Input placeholder='0 км' width='80' />
+          <Input placeholder="0 км" width="80" />
         </RadiusContainer>
         <SearchButton>Search</SearchButton>
       </Content>
     </Wrapper>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;

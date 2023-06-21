@@ -1,18 +1,19 @@
-import React from 'react'
-import { Input, Wrapper, SearchIcon } from './styled'
-import Icon from '../../assets/img/vector.png'
+import React from 'react';
+
+import Icon from '../../assets/img/vector.png';
+import { Input, SearchIcon, Wrapper } from './styled';
 
 interface TypeSearchBar {
-  width: string
+  width: string;
 }
 
-const SearchBar = ({ width }: TypeSearchBar) => {
+function SearchBar({ width }: TypeSearchBar) {
   return (
     <Wrapper>
-      <SearchIcon src={Icon} alt='search icon' />
-      <Input placeholder='Место, адрес..' width={width} />
+      <SearchIcon src={Icon} alt="search icon" />
+      <Input placeholder="Место, адрес.." width={width} />
     </Wrapper>
-  )
+  );
 }
 
-export default SearchBar
+export default SearchBar;

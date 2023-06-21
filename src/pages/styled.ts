@@ -1,7 +1,7 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const HomePageWrapper = styled.div`
   display: flex;
-`
+`;
 
-export { HomePageWrapper }
+export default HomePageWrapper;

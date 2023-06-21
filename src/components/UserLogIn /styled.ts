@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -6,19 +6,19 @@ const Wrapper = styled.div`
   border-radius: 6px;
   max-width: 500px;
   margin-top: 32px;
-`
+`;
 const Info = styled.div`
   margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 const Header = styled.h1`
   width: 345px;
   font-size: 30px;
   line-height: 36px;
   color: rgb(107 114 128);
-`
+`;
 
 const HeaderButton = styled.button`
   display: flex;
@@ -28,23 +28,23 @@ const HeaderButton = styled.button`
   -webkit-appearance: none;
   cursor: pointer;
 } 
-`
+`;
 
 const Form = styled.form`
   display: flex;
   justify-content: center;
   margin-top: 16px;
-`
+`;
 const FormList = styled.div`
   display: flex;
   flex-direction: column;
   width: 345px;
-`
+`;
 const FormListItem = styled.div`
   margin-top: 12px;
   display: flex;
   justify-content: center;
-`
+`;
 const FormListInput = styled.input`
   width: 100%;
   padding: 10px 8px 10px 12px;
@@ -54,9 +54,9 @@ const FormListInput = styled.input`
   &::placeholder {
     color: grey;
   }
-`
+`;
 const FormButton = styled.button<{
-  isallformfilled?: string | undefined
+  isallformfilled?: string | undefined;
 }>`
   width: 268px;
   height: 38px;
@@ -73,15 +73,15 @@ const FormButton = styled.button<{
   &: focus {
     outline: none;
   }
-`
+`;
 const Footer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
-`
+`;
 const FooterText = styled.p`
   margin-right: 4px;
-`
+`;
 const FooterButton = styled.button`
   color: #2563eb;
   border: none;
@@ -91,19 +91,19 @@ const FooterButton = styled.button`
   &: hover {
     text-decoration: underline;
   }
-`
+`;
 
 export {
-  Wrapper,
-  Info,
-  Header,
-  Form,
-  FormList,
-  FormListItem,
-  FormListInput,
-  FormButton,
-  HeaderButton,
   Footer,
-  FooterText,
   FooterButton,
-}
+  FooterText,
+  Form,
+  FormButton,
+  FormList,
+  FormListInput,
+  FormListItem,
+  Header,
+  HeaderButton,
+  Info,
+  Wrapper,
+};

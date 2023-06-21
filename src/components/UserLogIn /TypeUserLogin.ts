@@ -1,6 +1,6 @@
 interface TypeUserLogin {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 
-export default TypeUserLogin
+export default TypeUserLogin;
