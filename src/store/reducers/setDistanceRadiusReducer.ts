@@ -1,7 +1,7 @@
 import type TypeSetDistanceRadiusAction from './TypeSetDistanceRadiusAction';
 
 const initialState = {
-  radius: '0',
+  radius: '10',
 };
 
 const setDistanceRadiusReducer = (
@@ -12,7 +12,8 @@ const setDistanceRadiusReducer = (
   switch (action.type) {
     case 'SET_RADIUS':
       return {
-        radius: action.payload,
+        radius:
+          Number(action.payload) < 10 ? initialState.radius : action.payload,
       };
     default:
       return state;

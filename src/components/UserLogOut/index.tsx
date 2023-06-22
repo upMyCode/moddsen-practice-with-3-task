@@ -3,21 +3,18 @@ import { signOut } from 'firebase/auth';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Cookies from 'js-cookie';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { auth } from '../../firebaseApp';
-import type { TypeRootState } from '../../store';
 import setCurrentUserInfoAction from '../../store/action/setCurrentUserInfoAction';
+import setDistanceRadiusAction from '../../store/action/setDistanceRadiusAction';
 import setModalStatusAction from '../../store/action/setModalStatusAction';
 import { Button, Footer, Header, Info, Wrapper } from './styled';
 
 function UserLogOut() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector(
-    (state: TypeRootState) => state.setCurrentUserInfoReducer,
-  );
 
   const closeModal = () => {
     dispatch(setModalStatusAction({ status: false, modalName: 'log-out' }));
@@ -25,11 +22,13 @@ function UserLogOut() {
 
   const handleLogout = async () => {
     try {
-      if (user) {
+      const userInfo = Cookies.get('user');
+      if (userInfo) {
         await signOut(auth);
         dispatch(
           setModalStatusAction({ status: false, modalName: 'log-out-confirm' }),
         );
+        dispatch(setDistanceRadiusAction('10'));
         dispatch(setCurrentUserInfoAction({ userEmail: null, uid: '' }));
         Cookies.remove('user', { path: '/' });
         navigate('/');
