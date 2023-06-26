@@ -1,17 +1,14 @@
-/* eslint-disable no-nested-ternary */
-/* eslint-disable react/jsx-no-comment-textnodes */
 import React from 'react';
 
 import Modal from '../Modal';
 import UserLogin from '../UserLogIn ';
 import UserLogOut from '../UserLogOut';
 import UserSignUp from '../UserSignUp';
-import Wrapper from './styled';
-import type TypeViewForm from './TypeViewForm';
+import type ViewFormProps from './types';
 
-function ViewForm({ status, modalName }: TypeViewForm) {
+function ViewForm({ status, modalName }: ViewFormProps) {
   return (
-    <Wrapper>
+    <div>
       {status && modalName && (
         <Modal>
           {modalName === 'sign-up' ? (
@@ -23,7 +20,7 @@ function ViewForm({ status, modalName }: TypeViewForm) {
           )}
         </Modal>
       )}
-    </Wrapper>
+    </div>
   );
 }
 

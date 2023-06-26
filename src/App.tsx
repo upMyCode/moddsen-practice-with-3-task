@@ -6,16 +6,14 @@ import HomePage from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
 
 function App() {
+  const { HOME, SEARCH } = PATHS;
   return (
     <Router>
       <Routes>
-        <Route path={PATHS.HOME} element={<HomePage />} />
+        <Route path={HOME} element={<HomePage />} />
       </Routes>
       <Routes>
-        <Route path={PATHS.SEARCH} element={<SearchPage />} />
-      </Routes>
-      <Routes>
-        <Route path={PATHS.FAVOURITES} element={<HomePage />} />
+        <Route path={SEARCH} element={<SearchPage />} />
       </Routes>
     </Router>
   );

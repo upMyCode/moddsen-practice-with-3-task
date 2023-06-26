@@ -1,13 +1,12 @@
-import type TypeSetDistanceRadiusAction from './TypeSetDistanceRadiusAction';
+import type { SetDistanceRadiusAction } from './types';
 
 const initialState = {
   radius: '10',
 };
 
 const setDistanceRadiusReducer = (
-  // eslint-disable-next-line @typescript-eslint/default-param-last
   state = initialState,
-  action: TypeSetDistanceRadiusAction,
+  action: SetDistanceRadiusAction,
 ) => {
   switch (action.type) {
     case 'SET_RADIUS':

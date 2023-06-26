@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { FirebaseError } from '@firebase/util';
 import ClearIcon from '@mui/icons-material/Clear';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -8,8 +7,8 @@ import { useDispatch } from 'react-redux';
 
 import AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY from '../../constants/firebaseErorsList';
 import { auth } from '../../firebaseApp';
-import setModalStatusAction from '../../store/action/setModalStatusAction';
-import CustomForm from '../CustomForm';
+import { setModalStatusAction } from '../../store/action';
+import CustomInput from '../CustomInput';
 import {
   Footer,
   FooterButton,
@@ -23,7 +22,7 @@ import {
   Info,
   Wrapper,
 } from './styled';
-import type TypeUserSignUp from './TypeUserSignUp';
+import type UserSignUpData from './types';
 import validationSchema from './validationSchema';
 
 function UserSignUp() {
@@ -39,7 +38,11 @@ function UserSignUp() {
     dispatch(setModalStatusAction({ status: false, modalName: 'sign-up' }));
   };
 
-  const onSubmitDataSignUp = async (values: TypeUserSignUp) => {
+  const handlePropagation = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+  };
+
+  const onSubmitDataSignUp = async (values: UserSignUpData) => {
     try {
       const registredUser = await createUserWithEmailAndPassword(
         auth,
@@ -66,7 +69,7 @@ function UserSignUp() {
     }
   };
 
-  const initialValues: TypeUserSignUp = {
+  const initialValues: UserSignUpData = {
     email: '',
     password: '',
     confirm_password: '',
@@ -89,7 +92,7 @@ function UserSignUp() {
         handleSubmit,
         dirty,
       }) => (
-        <Wrapper onClick={(e) => e.stopPropagation()}>
+        <Wrapper onClick={handlePropagation}>
           <Info>
             <Header>Sign up</Header>
             <HeaderButton type="button" onClick={closeModal}>
@@ -101,46 +104,46 @@ function UserSignUp() {
           <Form onSubmit={handleSubmit}>
             <FormList>
               <FormListItem>
-                <CustomForm
-                  formValue={values.email}
-                  formName="email"
-                  formOnBlur={handleBlur}
-                  formOnChange={handleChange}
-                  formPlaceholder="name@example.com"
-                  formType="email"
-                  error={errors.email}
-                  touched={touched.email}
-                  isValid={isValid}
-                  dirty={dirty}
+                <CustomInput
+                  inputValue={values.email}
+                  inputName="email"
+                  inputOnBlur={handleBlur}
+                  inputOnChange={handleChange}
+                  inputPlaceholder="name@example.com"
+                  inputType="email"
+                  inputError={errors.email}
+                  inputTouched={touched.email}
+                  inputIsValid={isValid}
+                  inputDirty={dirty}
                 />
               </FormListItem>
               <FormListItem>
-                <CustomForm
-                  formValue={values.password}
-                  formName="password"
-                  formOnBlur={handleBlur}
-                  formOnChange={handleChange}
-                  formPlaceholder="Enter Password"
-                  formType="password"
-                  error={errors.password}
-                  touched={touched.password}
-                  isValid={isValid}
-                  dirty={dirty}
+                <CustomInput
+                  inputValue={values.password}
+                  inputName="password"
+                  inputOnBlur={handleBlur}
+                  inputOnChange={handleChange}
+                  inputPlaceholder="Enter Password"
+                  inputType="password"
+                  inputError={errors.password}
+                  inputTouched={touched.password}
+                  inputIsValid={isValid}
+                  inputDirty={dirty}
                 />
               </FormListItem>
               <FormListItem>
-                <CustomForm
-                  formValue={values.confirm_password}
-                  formName="confirm_password"
-                  formOnBlur={handleBlur}
-                  formOnChange={handleChange}
-                  formType="password"
-                  formPlaceholder="Repeat Password"
-                  error={errors.confirm_password}
-                  touched={touched.confirm_password}
-                  isValid={isValid}
-                  dirty={dirty}
-                  serverError={serverError}
+                <CustomInput
+                  inputValue={values.confirm_password}
+                  inputName="confirm_password"
+                  inputOnBlur={handleBlur}
+                  inputOnChange={handleChange}
+                  inputType="password"
+                  inputPlaceholder="Repeat Password"
+                  inputError={errors.confirm_password}
+                  inputTouched={touched.confirm_password}
+                  inputIsValid={isValid}
+                  inputDirty={dirty}
+                  inputServerError={serverError}
                 />
               </FormListItem>
               <FormListItem>

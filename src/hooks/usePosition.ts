@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import type { TypeRootState } from '../store';
-import setUserPositionAction from '../store/action/setUserPositionAction';
+import { setUserPositionAction } from '../store/action';
 
 const usePosition = () => {
   const [error, setError] = useState<string | null>(null);
@@ -15,23 +14,19 @@ const usePosition = () => {
   const { coords, zoom } = locationData;
 
   useEffect(() => {
-    const onChange = (posLoc: any) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-      const { latitude, longitude } = posLoc.coords;
+    const onChange = (position: GeolocationPosition) => {
+      const { latitude, longitude } = position.coords;
 
       dispatch(
         setUserPositionAction({
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           coords: [latitude, longitude],
           zoom: 12,
         }),
       );
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-shadow
-    const onError = (error: any) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      setError(error.message);
+    const onError = (e: GeolocationPositionError) => {
+      setError(e.message);
     };
 
     const geo = navigator.geolocation;
@@ -43,9 +38,8 @@ const usePosition = () => {
 
     const watcher = geo.watchPosition(onChange, onError);
 
-    // eslint-disable-next-line consistent-return
     return () => geo.clearWatch(watcher);
-  }, [dispatch]);
+  }, []);
 
   return { coords, zoom, error };
 };

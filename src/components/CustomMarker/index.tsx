@@ -49,12 +49,7 @@ function CustomMarker({ key, icon, position, info }: any) {
     iconSize: [38, 38],
   });
   return (
-    <Marker
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      key={key}
-      icon={customIcon}
-      position={position}
-    >
+    <Marker key={key} icon={customIcon} position={position}>
       <Popup>{info}</Popup>
     </Marker>
   );

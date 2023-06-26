@@ -1,19 +1,18 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { FirebaseError } from '@firebase/util';
 import ClearIcon from '@mui/icons-material/Clear';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Formik } from 'formik';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Cookies from 'js-cookie';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY from '../../constants/firebaseErorsList';
 import { auth } from '../../firebaseApp';
-import setCurrentUserInfoAction from '../../store/action/setCurrentUserInfoAction';
-import setModalStatusAction from '../../store/action/setModalStatusAction';
-import CustomForm from '../CustomForm';
+import {
+  setCurrentUserInfoAction,
+  setModalStatusAction,
+} from '../../store/action';
+import CustomInput from '../CustomInput';
 import {
   Form,
   FormButton,
@@ -24,7 +23,7 @@ import {
   Info,
   Wrapper,
 } from './styled';
-import type TypeUserLogin from './TypeUserLogin';
+import type UserLoginData from './types';
 import validationSchema from './validationSchema';
 
 function UserLogIn() {
@@ -36,11 +35,15 @@ function UserLogIn() {
     dispatch(setModalStatusAction({ status: true, modalName: 'log-out' }));
   };
 
+  const handlePropagation = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+  };
+
   const closeModal = () => {
     dispatch(setModalStatusAction({ status: false, modalName: 'log-in' }));
   };
 
-  const onSubmitDataLogin = async (values: TypeUserLogin) => {
+  const onSubmitDataLogin = async (values: UserLoginData) => {
     try {
       const existUserData = await signInWithEmailAndPassword(
         auth,
@@ -51,6 +54,7 @@ function UserLogIn() {
       if (existUserData) {
         const { email, uid } = existUserData.user;
         const userDataForCookies = JSON.stringify({ email, uid });
+
         dispatch(setCurrentUserInfoAction({ userEmail: email, uid }));
         dispatch(setModalStatusAction({ status: false, modalName: 'log-in' }));
         Cookies.set('user', userDataForCookies, { expires: 7 });
@@ -70,7 +74,7 @@ function UserLogIn() {
     }
   };
 
-  const initialValues: TypeUserLogin = {
+  const initialValues: UserLoginData = {
     email: '',
     password: '',
   };
@@ -92,7 +96,7 @@ function UserLogIn() {
         handleSubmit,
         dirty,
       }) => (
-        <Wrapper onClick={(e) => e.stopPropagation()}>
+        <Wrapper onClick={handlePropagation}>
           <Info>
             <Header>Log in</Header>
             <HeaderButton type="button" onClick={closeModal}>
@@ -104,32 +108,32 @@ function UserLogIn() {
           <Form onSubmit={handleSubmit}>
             <FormList>
               <FormListItem>
-                <CustomForm
-                  formValue={values.email}
-                  formName="email"
-                  formOnBlur={handleBlur}
-                  formOnChange={handleChange}
-                  formPlaceholder="name@example.com"
-                  formType="email"
-                  error={errors.email}
-                  touched={touched.email}
-                  isValid={isValid}
-                  dirty={dirty}
+                <CustomInput
+                  inputValue={values.email}
+                  inputName="email"
+                  inputOnBlur={handleBlur}
+                  inputOnChange={handleChange}
+                  inputPlaceholder="name@example.com"
+                  inputType="email"
+                  inputError={errors.email}
+                  inputTouched={touched.email}
+                  inputIsValid={isValid}
+                  inputDirty={dirty}
                 />
               </FormListItem>
               <FormListItem>
-                <CustomForm
-                  formValue={values.password}
-                  formName="password"
-                  formOnBlur={handleBlur}
-                  formOnChange={handleChange}
-                  formPlaceholder="Enter Password"
-                  formType="password"
-                  error={errors.password}
-                  touched={touched.password}
-                  isValid={isValid}
-                  dirty={dirty}
-                  serverError={serverError}
+                <CustomInput
+                  inputValue={values.password}
+                  inputName="password"
+                  inputOnBlur={handleBlur}
+                  inputOnChange={handleChange}
+                  inputPlaceholder="Enter Password"
+                  inputType="password"
+                  inputError={errors.password}
+                  inputTouched={touched.password}
+                  inputIsValid={isValid}
+                  inputDirty={dirty}
+                  inputServerError={serverError}
                 />
               </FormListItem>
               <FormListItem>

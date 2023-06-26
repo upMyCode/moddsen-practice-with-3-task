@@ -9,11 +9,10 @@ import LocationMarkers from '../LocationMarkers';
 import MyMap from './styled';
 
 function Map() {
-  const height = '100vh';
   const { coords, zoom } = usePosition();
 
   return (
-    <MyMap height={height} center={coords} zoom={zoom}>
+    <MyMap height="100vh" center={coords} zoom={zoom}>
       <ChangeView />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

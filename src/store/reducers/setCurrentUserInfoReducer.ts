@@ -1,10 +1,9 @@
-import type TypeSetCurrentUserInfoAction from './TypeSetCurrentUserInfoAction';
+import type { SetCurrentUserInfoAction } from './types';
 
 const initialState = null;
 const setCurrentUserInfoReducer = (
-  // eslint-disable-next-line @typescript-eslint/default-param-last
   state: null = initialState,
-  action: TypeSetCurrentUserInfoAction,
+  action: SetCurrentUserInfoAction,
 ) => {
   switch (action.type) {
     case 'SET_CURRENT_USER':

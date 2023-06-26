@@ -1,6 +1,7 @@
 import type { ReactElement, ReactNode } from 'react';
-import React from 'react';
 
-export interface TypePropsModal {
+interface ModalProps {
   children?: ReactElement | ReactNode[];
 }
+
+export default ModalProps;

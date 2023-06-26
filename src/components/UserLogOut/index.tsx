@@ -1,15 +1,15 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { signOut } from 'firebase/auth';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Cookies from 'js-cookie';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { auth } from '../../firebaseApp';
-import setCurrentUserInfoAction from '../../store/action/setCurrentUserInfoAction';
-import setDistanceRadiusAction from '../../store/action/setDistanceRadiusAction';
-import setModalStatusAction from '../../store/action/setModalStatusAction';
+import {
+  setCurrentUserInfoAction,
+  setDistanceRadiusAction,
+  setModalStatusAction,
+} from '../../store/action';
 import { Button, Footer, Header, Info, Wrapper } from './styled';
 
 function UserLogOut() {
@@ -18,6 +18,10 @@ function UserLogOut() {
 
   const closeModal = () => {
     dispatch(setModalStatusAction({ status: false, modalName: 'log-out' }));
+  };
+
+  const handlePropagation = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
   };
 
   const handleLogout = async () => {
@@ -41,16 +45,16 @@ function UserLogOut() {
   };
 
   return (
-    <Wrapper onClick={(e) => e.stopPropagation()}>
+    <Wrapper onClick={handlePropagation}>
       <Info>
         <Header>Log out from the app?</Header>
       </Info>
       <Footer>
         <Button color="confirm" onClick={handleLogout}>
-          Log out
+          Yes
         </Button>
         <Button color="reject" onClick={closeModal}>
-          Exit
+          No
         </Button>
       </Footer>
     </Wrapper>

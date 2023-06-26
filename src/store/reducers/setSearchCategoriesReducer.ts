@@ -1,13 +1,12 @@
-import type TypeCategories from './TypeSetSearchCategoriesAction';
+import type { SetSearchCategoriesAction } from './types';
 
 const initialState = {
   category: 'all',
 };
 
 const setSearchCategoriesReducer = (
-  // eslint-disable-next-line @typescript-eslint/default-param-last
   state = initialState,
-  action: TypeCategories,
+  action: SetSearchCategoriesAction,
 ) => {
   switch (action.type) {
     case 'SET_CATEGORY':

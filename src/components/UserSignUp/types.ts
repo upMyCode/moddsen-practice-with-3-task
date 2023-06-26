@@ -1,7 +1,7 @@
-interface TypeUserSignUp {
+interface UserSignUpData {
   email: string;
   password: string;
   confirm_password: string;
 }
 
-export default TypeUserSignUp;
+export default UserSignUpData;

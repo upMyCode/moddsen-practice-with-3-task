@@ -9,7 +9,7 @@ import ExitLogoIcon from '../../assets/img/exitIcon.png';
 import Logo from '../../assets/img/logo.png';
 import SearchIcon from '../../assets/img/searchIcon.png';
 import userProfileIcon from '../../assets/img/userProfile.png';
-import setModalStatusAction from '../../store/action/setModalStatusAction';
+import { setModalStatusAction } from '../../store/action';
 import {
   NavbarContainer,
   NavbarItem,
@@ -24,11 +24,7 @@ function Navbar() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isUserAuth) {
-      setLogInStatus(!!isUserAuth);
-    } else {
-      setLogInStatus(!!isUserAuth);
-    }
+    setLogInStatus(!!isUserAuth);
   }, [isUserAuth]);
 
   return (

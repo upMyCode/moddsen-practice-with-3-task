@@ -15,13 +15,21 @@
     "project": "./tsconfig.json"
   },
   "plugins": ["@typescript-eslint", "simple-import-sort", "import"],
-  "extends": ["airbnb", "prettier", "airbnb-typescript"],
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "prettier",
+    "airbnb-typescript"
+  ],
   "rules": {
     "@typescript-eslint/consistent-type-imports": "warn",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
     "import/first": "error",
     "import/newline-after-import": "error",
-    "import/no-duplicates": "error"
+    "import/no-duplicates": "error",
+    "default-param-last": "off",
+    "consistent-return": "off",
+    "@typescript-eslint/default-param-last": "off"
   }
 }

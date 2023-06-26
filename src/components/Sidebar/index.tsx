@@ -8,8 +8,10 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import type { TypeRootState } from '../../store';
-import setDistanceRadiusAction from '../../store/action/setDistanceRadiusAction';
-import setSearchCategoriesAction from '../../store/action/setSearchCategoriesAction';
+import {
+  setDistanceRadiusAction,
+  setSearchCategoriesAction,
+} from '../../store/action';
 import SearchBar from '../SearchBar';
 import {
   Content,

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const UserSignUpFormListInput = styled.input<{ error: undefined | string }>`
+const Input = styled.input<{ error: undefined | string }>`
   width: 100%;
   padding: 10px 8px 10px 12px;
   border-radius: 6px;
@@ -13,15 +13,15 @@ const UserSignUpFormListInput = styled.input<{ error: undefined | string }>`
   }
 `;
 
-const CustomFormWrapper = styled.div`
+const CustomInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
 `;
 
-const CustomFormError = styled.p`
+const CustomInputError = styled.p`
   color: #ef4444;
   font-size: 14px;
 `;
 
-export { CustomFormError, CustomFormWrapper, UserSignUpFormListInput };
+export { CustomInputError, CustomInputWrapper, Input };

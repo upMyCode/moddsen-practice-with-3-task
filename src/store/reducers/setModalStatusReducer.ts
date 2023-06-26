@@ -1,15 +1,13 @@
-import type TypeSetModalStatusAction from './TypeSetModalStatusAction';
-import type TypeStatus from './TypeStatus';
+import type { SetModalStatusAction, Status } from './types';
 
-const initialState: TypeStatus = {
+const initialState: Status = {
   status: false,
   modalName: '',
 };
 
 const setModalStatusReducer = (
-  // eslint-disable-next-line @typescript-eslint/default-param-last
   state = initialState,
-  action: TypeSetModalStatusAction,
+  action: SetModalStatusAction,
 ) => {
   switch (action.type) {
     case 'SET_MODAL_STATUS':

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-import type TypeNavbarItem from './TypeNavbarItem';
-import type TypeNavbarItemImg from './TypeNavbarItemImg';
+import type { NavbarItemImgProps, NavbarItemProps } from './types';
 
 const NavbarContainer = styled.nav`
   display: flex;
@@ -18,7 +17,7 @@ const NavbarList = styled.ul`
   align-items: center;
 `;
 
-const NavbarItem = styled.li<TypeNavbarItem>`
+const NavbarItem = styled.li<NavbarItemProps>`
   list-style: none;
   cursor: pointer;
   display: flex;
@@ -33,7 +32,7 @@ const NavbarItem = styled.li<TypeNavbarItem>`
   border: ${(props) => (props.border ? props.border : '')};
 `;
 
-const NavbarItemImg = styled.img<TypeNavbarItemImg>`
+const NavbarItemImg = styled.img<NavbarItemImgProps>`
   width: ${(props) => (props.width ? props.height : '')};
   height: ${(props) => (props.width ? props.height : '')};
 `;

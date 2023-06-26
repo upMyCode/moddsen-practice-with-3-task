@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React, { useEffect, useState } from 'react';
 import { useMapEvents } from 'react-leaflet';
 import { useSelector } from 'react-redux';
@@ -8,8 +7,7 @@ import { chooseUserSights, getAllSights, getCategory } from '../../helpers';
 import usePosition from '../../hooks/usePosition';
 import type { TypeRootState } from '../../store';
 import CustomMarker from '../CustomMarker';
-import MarkerWrapper from './styled';
-import type { TypeLocations } from './TypeLocations';
+import type { Locations } from './types';
 
 function LocationMarkers() {
   const { coords } = usePosition();
@@ -30,7 +28,7 @@ function LocationMarkers() {
           geometry: { coordinates: [coords[1], coords[0]] },
         };
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const sightsList: TypeLocations | undefined = await getSightsDataNearby(
+        const sightsList: Locations | undefined = await getSightsDataNearby(
           coords,
           radius,
         );
@@ -47,7 +45,6 @@ function LocationMarkers() {
         }
       };
 
-      // eslint-disable-next-line no-void
       void handleGetSight();
     } catch (e) {
       /* empty */
@@ -59,16 +56,14 @@ function LocationMarkers() {
   });
 
   return (
-    <MarkerWrapper>
+    <>
       {markers.map((elem) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         if (elem.geometry?.coordinates) {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
           const coordsF = elem.geometry?.coordinates;
           const categoryMarker = getCategory(elem);
+
           return (
             <CustomMarker
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
               key={elem.id}
               icon={categoryMarker}
               position={[coordsF[1], coordsF[0]]}
@@ -78,7 +73,7 @@ function LocationMarkers() {
         }
         return null;
       })}
-    </MarkerWrapper>
+    </>
   );
 }
 

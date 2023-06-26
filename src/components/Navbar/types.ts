@@ -1,4 +1,9 @@
-type TypeNavbarItem = {
+type NavbarItemImgProps = {
+  width?: string;
+  height?: string;
+};
+
+type NavbarItemProps = {
   top?: string;
   bot?: string;
   width: string;
@@ -9,4 +14,4 @@ type TypeNavbarItem = {
   onClick?: React.MouseEventHandler<HTMLLIElement> | undefined;
 };
 
-export default TypeNavbarItem;
+export type { NavbarItemImgProps, NavbarItemProps };

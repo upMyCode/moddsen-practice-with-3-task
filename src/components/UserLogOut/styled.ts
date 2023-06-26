@@ -18,6 +18,7 @@ const Header = styled.h1`
   font-size: 30px;
   line-height: 36px;
   color: rgb(107 114 128);
+  text-align: center;
 `;
 
 const Button = styled.button<{ color: string }>`

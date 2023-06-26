@@ -1,9 +1,6 @@
-import type {
-  TypeFeatures,
-  TypeLocations,
-} from '../components/LocationMarkers/TypeLocations';
+import type { Features, Locations } from '../components/LocationMarkers/types';
 
-const getAllSights = (result: TypeLocations) => {
+const getAllSights = (result: Locations) => {
   const list = result.features;
 
   const sightsList = list.filter(
@@ -13,7 +10,7 @@ const getAllSights = (result: TypeLocations) => {
   return sightsList;
 };
 
-const getReligionSights = (sights: Array<TypeFeatures>) => {
+const getReligionSights = (sights: Array<Features>) => {
   const RELIGION = 'religion';
 
   const religionList = sights.filter((elem) => {
@@ -27,7 +24,7 @@ const getReligionSights = (sights: Array<TypeFeatures>) => {
   return religionList;
 };
 
-const getBeachesSights = (sights: Array<TypeFeatures>) => {
+const getBeachesSights = (sights: Array<Features>) => {
   const BEACHES = 'beaches';
 
   const beachesList = sights.filter((elem) => {
@@ -41,7 +38,7 @@ const getBeachesSights = (sights: Array<TypeFeatures>) => {
   return beachesList;
 };
 
-const getHistoricSights = (sights: Array<TypeFeatures>) => {
+const getHistoricSights = (sights: Array<Features>) => {
   const HISTORIC = 'historic';
 
   const historicList = sights.filter((elem) => {
@@ -55,7 +52,7 @@ const getHistoricSights = (sights: Array<TypeFeatures>) => {
   return historicList;
 };
 
-const getCulturalSights = (sights: Array<TypeFeatures>) => {
+const getCulturalSights = (sights: Array<Features>) => {
   const CULTURAL = 'cultural';
 
   const culturalList = sights.filter((elem) => {
@@ -69,7 +66,7 @@ const getCulturalSights = (sights: Array<TypeFeatures>) => {
   return culturalList;
 };
 
-const getBurialSights = (sights: Array<TypeFeatures>) => {
+const getBurialSights = (sights: Array<Features>) => {
   const BURIAL_PLACES = 'burial_places';
 
   const burialList = sights.filter((elem) => {
@@ -83,7 +80,7 @@ const getBurialSights = (sights: Array<TypeFeatures>) => {
   return burialList;
 };
 
-const chooseUserSights = (sights: Array<TypeFeatures>, category: string) => {
+const chooseUserSights = (sights: Array<Features>, category: string) => {
   let categoryList = [];
 
   switch (category) {
@@ -116,7 +113,7 @@ const chooseUserSights = (sights: Array<TypeFeatures>, category: string) => {
   return categoryList;
 };
 
-const getCategory = (sight: TypeFeatures) => {
+const getCategory = (sight: Features) => {
   const categories = [
     'historic',
     'beaches',
