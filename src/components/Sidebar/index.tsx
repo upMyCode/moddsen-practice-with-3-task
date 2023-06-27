@@ -7,6 +7,7 @@ import Select from '@mui/material/Select';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import SIGHTS_TYPES from '../../constants/sightsType';
 import type { TypeRootState } from '../../store';
 import {
   setDistanceRadiusAction,
@@ -35,7 +36,9 @@ function Sidebar() {
   };
 
   const handleRadius = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setDistanceRadiusAction(e.target.value));
+    const radiusValue = e.target.value;
+
+    dispatch(setDistanceRadiusAction(Number(radiusValue)));
   };
   return (
     <Wrapper>
@@ -53,12 +56,11 @@ function Sidebar() {
               label="Places"
               onChange={handleChange}
             >
-              <MenuItem value="all">All</MenuItem>
-              <MenuItem value="religion">Religion</MenuItem>
-              <MenuItem value="beaches">Beaches</MenuItem>
-              <MenuItem value="historic">Historic</MenuItem>
-              <MenuItem value="cultural">Cultural</MenuItem>
-              <MenuItem value="burial">Burial</MenuItem>
+              {SIGHTS_TYPES.map((elem) => (
+                <MenuItem key={elem.type} value={elem.type}>
+                  {elem.text}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Box>

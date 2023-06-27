@@ -23,4 +23,8 @@ interface Locations {
   features: Array<Features>;
 }
 
-export type { Features, Locations };
+interface LocationsAPI {
+  data: Locations;
+}
+
+export type { Features, Geometry, Locations, LocationsAPI };

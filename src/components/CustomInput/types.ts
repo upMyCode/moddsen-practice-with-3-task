@@ -6,7 +6,7 @@ interface CustomInputProps {
   inputPlaceholder: string;
   inputError: string | undefined;
   inputIsValid: boolean;
-  inputTouched: boolean | undefined;
+  inputTouched: boolean;
   inputDirty: boolean;
   inputType: string;
   inputServerError?: string | null;

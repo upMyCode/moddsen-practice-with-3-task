@@ -5,7 +5,7 @@ import { Formik } from 'formik';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY from '../../constants/firebaseErorsList';
+import AUTH_ERROR_CODES from '../../constants/firebaseErorsList';
 import { auth } from '../../firebaseApp';
 import { setModalStatusAction } from '../../store/action';
 import CustomInput from '../CustomInput';
@@ -60,9 +60,7 @@ function UserSignUp() {
 
         if (errorCode) {
           setServerError(
-            AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY[
-              errorCode as keyof typeof AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY
-            ],
+            AUTH_ERROR_CODES[errorCode as keyof typeof AUTH_ERROR_CODES],
           );
         }
       }
@@ -112,7 +110,7 @@ function UserSignUp() {
                   inputPlaceholder="name@example.com"
                   inputType="email"
                   inputError={errors.email}
-                  inputTouched={touched.email}
+                  inputTouched={touched.email ? touched.email : !!touched.email}
                   inputIsValid={isValid}
                   inputDirty={dirty}
                 />
@@ -126,7 +124,9 @@ function UserSignUp() {
                   inputPlaceholder="Enter Password"
                   inputType="password"
                   inputError={errors.password}
-                  inputTouched={touched.password}
+                  inputTouched={
+                    touched.password ? touched.password : !!touched.password
+                  }
                   inputIsValid={isValid}
                   inputDirty={dirty}
                 />
@@ -140,7 +140,11 @@ function UserSignUp() {
                   inputType="password"
                   inputPlaceholder="Repeat Password"
                   inputError={errors.confirm_password}
-                  inputTouched={touched.confirm_password}
+                  inputTouched={
+                    touched.confirm_password
+                      ? touched.confirm_password
+                      : !!touched.confirm_password
+                  }
                   inputIsValid={isValid}
                   inputDirty={dirty}
                   inputServerError={serverError}

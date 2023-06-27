@@ -1,55 +1,58 @@
 import { Icon } from 'leaflet';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 
-import beach from '../../assets/img/beach.png';
-import burial from '../../assets/img/burial.png';
-import culture from '../../assets/img/culture.png';
-import historic from '../../assets/img/historic.png';
-import user from '../../assets/img/marker.png';
-import religion from '../../assets/img/religion.png';
-import unknown from '../../assets/img/unknown.png';
+import ICON_LIST from '../../constants/iconList';
+import type CustomMarkerProps from './types';
 
-function CustomMarker({ key, icon, position, info }: any) {
-  let renderIcon = '';
+function CustomMarker({ icon, position, info }: CustomMarkerProps) {
+  const { beach, burial, culture, historic, religion, unknown, user } =
+    ICON_LIST;
+  const [renderIcon, setRenderIcon] = useState<string>(user);
 
-  switch (icon) {
-    case 'historic': {
-      renderIcon = historic;
-      break;
+  useEffect(() => {
+    switch (icon) {
+      case 'historic': {
+        setRenderIcon(historic);
+        break;
+      }
+      case 'beaches': {
+        setRenderIcon(beach);
+        break;
+      }
+      case 'religion': {
+        setRenderIcon(religion);
+        break;
+      }
+      case 'user': {
+        setRenderIcon(user);
+        break;
+      }
+      case 'burial_places': {
+        setRenderIcon(burial);
+        break;
+      }
+      case 'cultural': {
+        setRenderIcon(culture);
+        break;
+      }
+      default: {
+        setRenderIcon(unknown);
+        break;
+      }
     }
-    case 'beaches': {
-      renderIcon = beach;
-      break;
-    }
-    case 'religion': {
-      renderIcon = religion;
-      break;
-    }
-    case 'user': {
-      renderIcon = user;
-      break;
-    }
-    case 'burial_places': {
-      renderIcon = burial;
-      break;
-    }
-    case 'cultural': {
-      renderIcon = culture;
-      break;
-    }
-    default: {
-      renderIcon = unknown;
-      break;
-    }
-  }
+  }, [icon]);
 
-  const customIcon = new Icon({
-    iconUrl: renderIcon,
-    iconSize: [38, 38],
-  });
   return (
-    <Marker key={key} icon={customIcon} position={position}>
+    <Marker
+      icon={
+        new Icon({
+          iconUrl: renderIcon,
+          iconSize: [38, 38],
+        })
+      }
+      position={position}
+    >
       <Popup>{info}</Popup>
     </Marker>
   );

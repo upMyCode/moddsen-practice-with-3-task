@@ -7,7 +7,7 @@ import { chooseUserSights, getAllSights, getCategory } from '../../helpers';
 import usePosition from '../../hooks/usePosition';
 import type { TypeRootState } from '../../store';
 import CustomMarker from '../CustomMarker';
-import type { Locations } from './types';
+import type { Features } from './types';
 
 function LocationMarkers() {
   const { coords } = usePosition();
@@ -22,16 +22,14 @@ function LocationMarkers() {
   useEffect(() => {
     try {
       const handleGetSight = async () => {
+        const searchRadius = radius.toString();
         const initialMarker = {
           id: '33565635',
           properties: { name: 'I m here', kinds: 'user' },
           geometry: { coordinates: [coords[1], coords[0]] },
         };
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const sightsList: Locations | undefined = await getSightsDataNearby(
-          coords,
-          radius,
-        );
+
+        const sightsList = await getSightsDataNearby(coords, searchRadius);
 
         if (sightsList) {
           const sortedSights = getAllSights(sightsList);
@@ -57,16 +55,17 @@ function LocationMarkers() {
 
   return (
     <>
-      {markers.map((elem) => {
-        if (elem.geometry?.coordinates) {
-          const coordsF = elem.geometry?.coordinates;
+      {markers.map((elem: Features) => {
+        const { coordinates } = elem.geometry;
+
+        if (coordinates) {
           const categoryMarker = getCategory(elem);
 
           return (
             <CustomMarker
               key={elem.id}
               icon={categoryMarker}
-              position={[coordsF[1], coordsF[0]]}
+              position={[coordinates[1], coordinates[0]]}
               info={elem.properties.name}
             />
           );

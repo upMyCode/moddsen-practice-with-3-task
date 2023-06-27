@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY from '../../constants/firebaseErorsList';
+import AUTH_ERROR_CODES from '../../constants/firebaseErorsList';
 import { auth } from '../../firebaseApp';
 import {
   setCurrentUserInfoAction,
@@ -29,11 +29,6 @@ import validationSchema from './validationSchema';
 function UserLogIn() {
   const [serverError, setServerError] = useState<string | null>(null);
   const dispatch = useDispatch();
-
-  const redirectToLogOut = () => {
-    dispatch(setModalStatusAction({ status: false, modalName: 'log-in' }));
-    dispatch(setModalStatusAction({ status: true, modalName: 'log-out' }));
-  };
 
   const handlePropagation = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -65,9 +60,7 @@ function UserLogIn() {
 
         if (errorCode) {
           setServerError(
-            AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY[
-              errorCode as keyof typeof AUTH_ERROR_CODES_MAP_DO_NOT_USE_INTERNALLY
-            ],
+            AUTH_ERROR_CODES[errorCode as keyof typeof AUTH_ERROR_CODES],
           );
         }
       }
@@ -116,7 +109,7 @@ function UserLogIn() {
                   inputPlaceholder="name@example.com"
                   inputType="email"
                   inputError={errors.email}
-                  inputTouched={touched.email}
+                  inputTouched={touched.email ? touched.email : !!touched.email}
                   inputIsValid={isValid}
                   inputDirty={dirty}
                 />
@@ -130,7 +123,9 @@ function UserLogIn() {
                   inputPlaceholder="Enter Password"
                   inputType="password"
                   inputError={errors.password}
-                  inputTouched={touched.password}
+                  inputTouched={
+                    touched.password ? touched.password : !!touched.password
+                  }
                   inputIsValid={isValid}
                   inputDirty={dirty}
                   inputServerError={serverError}

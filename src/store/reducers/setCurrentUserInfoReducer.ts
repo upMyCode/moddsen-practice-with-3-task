@@ -1,8 +1,8 @@
-import type { SetCurrentUserInfoAction } from './types';
+import type { SetCurrentUserInfoAction, User } from './types';
 
 const initialState = null;
 const setCurrentUserInfoReducer = (
-  state: null = initialState,
+  state: null | User = initialState,
   action: SetCurrentUserInfoAction,
 ) => {
   switch (action.type) {

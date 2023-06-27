@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
-const Input = styled.input<{ error: undefined | string }>`
+const Input = styled.input<{
+  error: string;
+}>`
   width: 100%;
   padding: 10px 8px 10px 12px;
   border-radius: 6px;
   appearance: none;
-  border: ${(props) =>
-    props.error ? '0.1px solid #ef4444;' : '0.1px solid grey;'};
+  border: 0.1px solid ${({ error }) => (error ? '#ef4444;' : 'grey;')};
 
   &::placeholder {
     color: grey;

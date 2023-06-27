@@ -23,7 +23,7 @@ function CustomInput(props: CustomInputProps) {
         onBlur={inputOnBlur}
         onChange={inputOnChange}
         placeholder={inputPlaceholder}
-        error={inputError}
+        error={inputError && inputTouched ? inputError : ''}
         type={inputType}
       />
       {inputError && inputTouched && (

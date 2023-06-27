@@ -17,13 +17,13 @@ function Modal({ children }: ModalProps) {
   };
 
   return (
-    <>
+    <div>
       {status && (
         <ModalWrapper>
           <ModalContent onClick={closeModalDarkPlace}>{children}</ModalContent>
         </ModalWrapper>
       )}
-    </>
+    </div>
   );
 }
 

@@ -5,7 +5,7 @@ const setCurrentUserInfoAction = (user: User | null) => ({
   type: 'SET_CURRENT_USER',
 });
 
-const setDistanceRadiusAction = (radius: string) => ({
+const setDistanceRadiusAction = (radius: number) => ({
   payload: radius,
   type: 'SET_RADIUS',
 });

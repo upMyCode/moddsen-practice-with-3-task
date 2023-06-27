@@ -23,13 +23,13 @@ const NavbarItem = styled.li<NavbarItemProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: ${(props) => (props.top ? props.top : '')};
-  margin-bottom: ${(props) => (props.bot ? props.bot : '')};
-  width: ${(props) => props.width};
-  height: ${(props) => props.height};
-  border-radius: ${(props) => (props.radius ? props.radius : '')};
-  background-color: ${(props) => (props.bgcolor ? props.bgcolor : '')};
-  border: ${(props) => (props.border ? props.border : '')};
+  margin-top: ${({ top }) => top || ''};
+  margin-bottom: ${({ bot }) => bot || ''};
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
+  border-radius: ${({ radius }) => radius || ''};
+  background-color: ${({ bgcolor }) => bgcolor || ''};
+  border: ${({ border }) => border || ''};
 `;
 
 const NavbarItemImg = styled.img<NavbarItemImgProps>`

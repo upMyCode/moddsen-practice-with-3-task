@@ -30,6 +30,14 @@
     "import/no-duplicates": "error",
     "default-param-last": "off",
     "consistent-return": "off",
-    "@typescript-eslint/default-param-last": "off"
+    "@typescript-eslint/default-param-last": "off",
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": false
+      }
+    ],
+    "no-void": ["error", { "allowAsStatement": true }],
+    "no-nested-ternary": "off"
   }
 }

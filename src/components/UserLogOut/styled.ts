@@ -24,73 +24,28 @@ const Header = styled.h1`
 const Button = styled.button<{ color: string }>`
   width: 100px;
   height: 38px;
-  background-color: ${(props) => {
-    if (props.color === 'confirm') {
-      return '#249c48';
-    }
-    if (props.color === 'reject') {
-      return '#ffffff';
-    }
-    return '';
-  }};
+  background-color: ${({ color }) =>
+    color === 'confirm' ? '#249c48;' : '#ffffff;'};
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
   border-radius: 6px;
   padding: 9px 17px;
-  color: ${(props) => {
-    if (props.color === 'confirm') {
-      return '#ffffff';
-    }
-    if (props.color === 'reject') {
-      return '#d91414';
-    }
-    return '';
-  }};
+  color: ${({ color }) => (color === 'confirm' ? '#ffffff;' : '#d91414;')};
   text-align: center;
   cursor: pointer;
   margin: 12px 0 12px 0;
-  border: ${(props) => {
-    if (props.color === 'confirm') {
-      return 'none';
-    }
-    if (props.color === 'reject') {
-      return '1px solid #d91414';
-    }
-    return '';
-  }};
+  border: ${({ color }) =>
+    color === 'confirm' ? 'none' : '1px solid #d91414'};
   margin-top: 40px;
   margin: 0 20px 20px 20px;
   &: focus {
     outline: none;
   }
   &: hover {
-    background-color: ${(props) => {
-    if (props.color === 'confirm') {
-      return '#077528';
-    }
-    if (props.color === 'reject') {
-      return '#ffffff';
-    }
-    return '';
-  }};
-    border: ${(props) => {
-    if (props.color === 'confirm') {
-      return 'none';
-    }
-    if (props.color === 'reject') {
-      return '1px solid #f50717';
-    }
-
-    return '';
-  }}
-    color: ${(props) => {
-    if (props.color === 'confirm') {
-      return '#ffffff';
-    }
-    if (props.color === 'reject') {
-      return '#f50717';
-    }
-    return '';
-  }};
+    background-color: ${({ color }) =>
+    color === 'confirm' ? '#077528' : '#ffffff'};
+    border: ${({ color }) =>
+    color === 'confirm' ? 'none' : '1px solid #f50717'};
+    color: ${({ color }) => (color === 'confirm' ? '#ffffff' : '#f50717')};
   }
 `;
 const Footer = styled.div`

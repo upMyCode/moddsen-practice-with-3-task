@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -9,6 +8,7 @@ import ExitLogoIcon from '../../assets/img/exitIcon.png';
 import Logo from '../../assets/img/logo.png';
 import SearchIcon from '../../assets/img/searchIcon.png';
 import userProfileIcon from '../../assets/img/userProfile.png';
+import PATHS from '../../constants/paths/paths';
 import { setModalStatusAction } from '../../store/action';
 import {
   NavbarContainer,
@@ -22,6 +22,11 @@ function Navbar() {
   const [isLogInStatus, setLogInStatus] = useState<boolean>(false);
   const isUserAuth = Cookies.get('user');
   const navigate = useNavigate();
+  const { HOME, SEARCH } = PATHS;
+
+  const handleRoute = (page: string) => {
+    navigate(page);
+  };
 
   useEffect(() => {
     setLogInStatus(!!isUserAuth);
@@ -31,7 +36,7 @@ function Navbar() {
     <NavbarContainer>
       <NavbarList>
         <NavbarItem
-          onClick={() => navigate('/')}
+          onClick={() => handleRoute(HOME)}
           top="30px"
           width="32px"
           height="30px"
@@ -41,7 +46,7 @@ function Navbar() {
         {isLogInStatus && (
           <>
             <NavbarItem
-              onClick={() => navigate('/search')}
+              onClick={() => handleRoute(SEARCH)}
               top="40px"
               width="60px"
               height="60px"

@@ -24,6 +24,11 @@ interface Status {
   modalName?: string;
 }
 
+interface User {
+  userEmail: string | null;
+  uid: string;
+}
+
 export type {
   Coords,
   SetCurrentUserInfoAction,
@@ -32,4 +37,5 @@ export type {
   SetSearchCategoriesAction,
   SetUserPositionAction,
   Status,
+  User,
 };

@@ -32,16 +32,14 @@ function UserLogOut() {
         dispatch(
           setModalStatusAction({ status: false, modalName: 'log-out-confirm' }),
         );
-        dispatch(setDistanceRadiusAction('10'));
+        dispatch(setDistanceRadiusAction(10));
         dispatch(setCurrentUserInfoAction({ userEmail: null, uid: '' }));
         Cookies.remove('user', { path: '/' });
         navigate('/');
       } else {
         throw new Error('You are not log in to the app!');
       }
-    } catch (e: unknown) {
-      console.log(e);
-    }
+    } catch (e: unknown) { /* empty */ }
   };
 
   return (
