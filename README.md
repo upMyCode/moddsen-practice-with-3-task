@@ -1,6 +1,6 @@
 # Geolocator
 
-[!App](https://github.com/upMyCode/calculator-app/blob/main/src/assets/img/app.png).
+[!App](https://github.com/upMyCode/modsen-practice-with-3-task/blob/main/src/assets/img/app.png).
 
 ## Available Scripts
 
