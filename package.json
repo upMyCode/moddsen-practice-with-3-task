@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^7.1.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@firebase/util": "^1.9.3",
@@ -37,14 +38,14 @@
     "yup": "^1.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
     "lint": "eslint \"**/*.{ts,tsx}\"",
     "lint:fix": "eslint \"**/*.{ts,tsx}\" --fix ",
     "prettier": "yarn prettier --write \"**/*.{ts,tsx}\"",
-    "dev": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json"
+    "dev": "yarn run && clean && tsc && tsc-alias"
   },
   "eslintConfig": {
     "extends": [
@@ -85,6 +86,8 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "react-app-rewire-alias": "^1.1.7",
+    "react-error-boundary": "^4.0.10",
     "tsc-alias": "^1.8.6",
     "typescript": "^5.1.3"
   }

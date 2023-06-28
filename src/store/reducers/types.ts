@@ -5,6 +5,7 @@ import type {
   setDistanceRadiusAction,
   setModalStatusAction,
   setSearchCategoriesAction,
+  setSightsListAction,
   setUserPositionAction,
 } from '../action';
 
@@ -13,6 +14,7 @@ type SetDistanceRadiusAction = ReturnType<typeof setDistanceRadiusAction>;
 type SetModalStatusAction = ReturnType<typeof setModalStatusAction>;
 type SetSearchCategoriesAction = ReturnType<typeof setSearchCategoriesAction>;
 type SetUserPositionAction = ReturnType<typeof setUserPositionAction>;
+type SetSightsListAction = ReturnType<typeof setSightsListAction>;
 
 interface Coords {
   coords: LatLngTuple;
@@ -35,6 +37,7 @@ export type {
   SetDistanceRadiusAction,
   SetModalStatusAction,
   SetSearchCategoriesAction,
+  SetSightsListAction,
   SetUserPositionAction,
   Status,
   User,

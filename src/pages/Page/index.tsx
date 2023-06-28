@@ -1,6 +1,8 @@
 import React from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { useSelector } from 'react-redux';
 
+import ErrorFallback from '../../components/ErrorFallback';
 import Map from '../../components/Map';
 import Navbar from '../../components/Navbar';
 import ViewForm from '../../components/ViewForm';
@@ -18,7 +20,9 @@ function Page({ children }: PageProps) {
       <ViewForm status={redirection.status} modalName={redirection.modalName} />
       <Navbar />
       {children}
-      <Map />
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <Map />
+      </ErrorBoundary>
     </PageWrapper>
   );
 }

@@ -13,6 +13,7 @@ import {
   setDistanceRadiusAction,
   setSearchCategoriesAction,
 } from '../../store/action';
+import type { Features } from '../LocationMarkers/types';
 import SearchBar from '../SearchBar';
 import {
   Content,
@@ -20,6 +21,7 @@ import {
   RadiusContainer,
   RadiusInfo,
   SearchButton,
+  SightItem,
   SightsContainer,
   SightsInfo,
   SightsList,
@@ -27,9 +29,13 @@ import {
 } from './styled';
 
 function Sidebar() {
+  const sights = useSelector(
+    (state: TypeRootState) => state.setSightsListReducer.sights,
+  );
   const category = useSelector(
     (state: TypeRootState) => state.setSearchCategoriesReducer.category,
   );
+
   const dispatch = useDispatch();
   const handleChange = (event: SelectChangeEvent) => {
     dispatch(setSearchCategoriesAction(event.target.value));
@@ -40,6 +46,7 @@ function Sidebar() {
 
     dispatch(setDistanceRadiusAction(Number(radiusValue)));
   };
+
   return (
     <Wrapper>
       <Content>
@@ -66,7 +73,11 @@ function Sidebar() {
         </Box>
         <SightsContainer>
           <SightsInfo>Места :</SightsInfo>
-          <SightsList>Here should be content</SightsList>
+          <SightsList>
+            {sights.map((sight: Features) => (
+              <SightItem key={sight.id}>{sight.properties.name}</SightItem>
+            ))}
+          </SightsList>
         </SightsContainer>
         <RadiusContainer>
           <RadiusInfo>В радиусe :</RadiusInfo>

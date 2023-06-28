@@ -1,3 +1,4 @@
+import type { Features } from '../../components/LocationMarkers/types';
 import type { LocationData, Status, User } from './types';
 
 const setCurrentUserInfoAction = (user: User | null) => ({
@@ -25,10 +26,16 @@ const setUserPositionAction = (location: LocationData) => ({
   type: 'SET_USER_POSITION',
 });
 
+const setSightsListAction = (sights: Array<Features>) => ({
+  payload: sights,
+  type: 'SET_SIGHTS',
+});
+
 export {
   setCurrentUserInfoAction,
   setDistanceRadiusAction,
   setModalStatusAction,
   setSearchCategoriesAction,
+  setSightsListAction,
   setUserPositionAction,
 };

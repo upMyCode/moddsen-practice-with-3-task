@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Wrapper = styled.aside`
   background-color: white;
   height: 100vh;
-  min-width: 320px;
+  min-width: 460px;
   box-shadow: 0 10px 10px rgb(0 0 0 / 0.25);
   z-index: 10;
   display: flex;
@@ -13,14 +13,16 @@ const Wrapper = styled.aside`
 `;
 
 const Content = styled.div`
+  min-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 30px;
 `;
 
 const Input = styled.input<{ width: string }>`
   width: ${(props) => props.width}px;
-  padding: 10px 25px 10px 20px;
+  padding: 5px 25px 10px 20px;
   border-radius: 10px;
   border: 3px solid #c4c4c4;
 `;
@@ -31,20 +33,22 @@ const RadiusContainer = styled.div`
 `;
 const RadiusInfo = styled.h1`
   font-size: 18px;
-  margin-top: 15px;
+  margin-top: 40px;
   margin-bottom: 15px;
 `;
 
 const SightsContainer = styled.div`
   width: 100%;
+  margin-top: 50px;
 `;
 
 const SightsList = styled.div`
-  max-height: 400px;
-  min-height: 350px;
-  width: 100%;
+  max-height: 200px;
+  min-height: 200px;
+  width: 350px;
   border-radius: 10px;
   border: 3px solid #c4c4c4;
+  overflow: scroll;
 `;
 
 const SightsInfo = styled.h1`
@@ -53,6 +57,11 @@ const SightsInfo = styled.h1`
   margin-bottom: 15px;
 `;
 
+const SightItem = styled.div`
+  border-top: 1px solid #c4c4c4;
+  border-bottom: 1px solid #c4c4c4;
+  padding: 10px; 10px; 10px; 10px;
+`;
 const SearchButton = styled.button`
   width: 200px;
   height: 38px;
@@ -75,6 +84,7 @@ export {
   RadiusContainer,
   RadiusInfo,
   SearchButton,
+  SightItem,
   SightsContainer,
   SightsInfo,
   SightsList,

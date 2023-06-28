@@ -5,6 +5,7 @@ import setCurrentUserInfoReducer from './reducers/setCurrentUserInfoReducer';
 import setDistanceRadiusReducer from './reducers/setDistanceRadiusReducer';
 import setModalStatusReducer from './reducers/setModalStatusReducer';
 import setSearchCategoriesReducer from './reducers/setSearchCategoriesReducer';
+import setSightsListReducer from './reducers/setSightsListReducer';
 import setUserPositionReducer from './reducers/setUserPositionReducer';
 
 const reducers = combineReducers({
@@ -13,6 +14,7 @@ const reducers = combineReducers({
   setCurrentUserInfoReducer,
   setDistanceRadiusReducer,
   setSearchCategoriesReducer,
+  setSightsListReducer,
 });
 
 const store = createStore(reducers, composeWithDevTools());

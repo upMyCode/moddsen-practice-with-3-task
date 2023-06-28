@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useMapEvents } from 'react-leaflet';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import getSightsDataNearby from '../../api';
 import { chooseUserSights, getAllSights, getCategory } from '../../helpers';
 import usePosition from '../../hooks/usePosition';
 import type { TypeRootState } from '../../store';
+import { setSightsListAction } from '../../store/action';
 import CustomMarker from '../CustomMarker';
 import type { Features } from './types';
 
 function LocationMarkers() {
+  const dispatch = useDispatch();
   const { coords } = usePosition();
-  // Next feature for error boundary
-  const [error, setError] = useState<string>('');
   const category = useSelector(
     (state: TypeRootState) => state.setSearchCategoriesReducer.category,
   );
@@ -22,9 +22,10 @@ function LocationMarkers() {
   const [markers, setMarkers] = useState<Array<any>>([]);
 
   const initialMarker = {
+    type: 'features',
     id: '33565635',
     properties: { name: 'I m here', kinds: 'user' },
-    geometry: { coordinates: [coords[1], coords[0]] },
+    geometry: { type: 'geometry', coordinates: [coords[1], coords[0]] },
   };
 
   useEffect(() => {
@@ -34,28 +35,26 @@ function LocationMarkers() {
 
         const sightsList = await getSightsDataNearby(coords, searchRadius);
 
-        if (typeof sightsList !== 'string' && sightsList) {
+        if (sightsList && typeof sightsList !== 'string') {
           const sortedSights = getAllSights(sightsList);
 
           if (sortedSights.length !== 0 && sortedSights) {
             const sights = chooseUserSights(sortedSights, category);
             setMarkers([initialMarker, ...sights]);
+            dispatch(setSightsListAction([...sights]));
           } else {
             setMarkers([initialMarker]);
+            dispatch(setSightsListAction([]));
           }
-        } else {
+        } else if (sightsList) {
           setMarkers([initialMarker]);
-
-          if (sightsList) {
-            setError(sightsList);
-          }
+          dispatch(setSightsListAction([]));
         }
       };
-
       void handleGetSight();
     } catch (e: unknown) {
       if (e instanceof Error) {
-        return setError(e.message);
+        throw new Error(e.message);
       }
     }
   }, [coords, radius, category]);
