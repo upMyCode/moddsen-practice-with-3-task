@@ -11,6 +11,8 @@ import type { Features } from './types';
 
 function LocationMarkers() {
   const { coords } = usePosition();
+  // Next feature for error boundary
+  const [error, setError] = useState<string>('');
   const category = useSelector(
     (state: TypeRootState) => state.setSearchCategoriesReducer.category,
   );
@@ -19,19 +21,20 @@ function LocationMarkers() {
   );
   const [markers, setMarkers] = useState<Array<any>>([]);
 
+  const initialMarker = {
+    id: '33565635',
+    properties: { name: 'I m here', kinds: 'user' },
+    geometry: { coordinates: [coords[1], coords[0]] },
+  };
+
   useEffect(() => {
     try {
       const handleGetSight = async () => {
         const searchRadius = radius.toString();
-        const initialMarker = {
-          id: '33565635',
-          properties: { name: 'I m here', kinds: 'user' },
-          geometry: { coordinates: [coords[1], coords[0]] },
-        };
 
         const sightsList = await getSightsDataNearby(coords, searchRadius);
 
-        if (sightsList) {
+        if (typeof sightsList !== 'string' && sightsList) {
           const sortedSights = getAllSights(sightsList);
 
           if (sortedSights.length !== 0 && sortedSights) {
@@ -40,12 +43,20 @@ function LocationMarkers() {
           } else {
             setMarkers([initialMarker]);
           }
+        } else {
+          setMarkers([initialMarker]);
+
+          if (sightsList) {
+            setError(sightsList);
+          }
         }
       };
 
       void handleGetSight();
-    } catch (e) {
-      /* empty */
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        return setError(e.message);
+      }
     }
   }, [coords, radius, category]);
 

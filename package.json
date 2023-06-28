@@ -43,7 +43,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint \"**/*.{ts,tsx}\"",
     "lint:fix": "eslint \"**/*.{ts,tsx}\" --fix ",
-    "prettier": "yarn prettier --write \"**/*.{ts,tsx}\""
+    "prettier": "yarn prettier --write \"**/*.{ts,tsx}\"",
+    "dev": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json"
   },
   "eslintConfig": {
     "extends": [
@@ -84,6 +85,7 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "tsc-alias": "^1.8.6",
     "typescript": "^5.1.3"
   }
 }

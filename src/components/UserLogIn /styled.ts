@@ -56,12 +56,12 @@ const FormListInput = styled.input`
   }
 `;
 const FormButton = styled.button<{
-  isallformfilled?: string | undefined;
+  isallformfilled?: boolean;
 }>`
   width: 268px;
   height: 38px;
-  background-color: ${(props) =>
-    props.isallformfilled === 'true' ? '#2563eb;' : '#9CA3AF;'}
+  background-color: ${({ isallformfilled }) =>
+    isallformfilled ? '#2563eb;' : '#9CA3AF;'}
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
   border-radius: 6px;
   padding: 9px 17px;

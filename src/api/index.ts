@@ -18,7 +18,9 @@ const getSightsDataNearby = async (coords: LatLngTuple, distance: string) => {
       return data;
     }
   } catch (e: unknown) {
-    /* empty */
+    if (e instanceof Error) {
+      return e.message;
+    }
   }
 };
 
